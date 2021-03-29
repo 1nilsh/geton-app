@@ -1,6 +1,6 @@
 export interface User {
   username: string;
-  email?: string;
-  nicename?: string;
-  jwt?: string;
+  email: string;
+  displayname: string;
+  jwt: string;
 }

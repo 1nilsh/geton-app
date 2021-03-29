@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthenticationResponse } from '../model/authentication-response';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../model/user';
 
@@ -23,11 +22,11 @@ export class AuthenticationService {
   public async login(username: string, password: string): Promise<boolean> {
     const authenticationRequest = {username, password};
     try {
-      const response = await this.http.post<AuthenticationResponse>(this.url, authenticationRequest)
+      const response = await this.http.post<User>(this.url, authenticationRequest)
         .toPromise();
-      this.saveUser({username, jwt: response.jwt});
+      this.saveUser(response);
       console.log(response);
-      this.messageSource.next({username});
+      this.messageSource.next(response);
     } catch (error) {
       return false;
     }

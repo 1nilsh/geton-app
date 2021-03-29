@@ -7,7 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './common/auth/service/authentication.service';
 import { JwtInterceptorService } from './common/auth/service/jwt-interceptor.service';
@@ -17,7 +17,10 @@ import { JwtInterceptorService } from './common/auth/service/jwt-interceptor.ser
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      rippleEffect: false,
+      mode: 'md'
+    }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

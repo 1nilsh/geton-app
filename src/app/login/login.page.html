@@ -15,11 +15,13 @@
       <ion-input formControlName="password" required type="password"></ion-input>
     </ion-item>
 
-    <ion-button *ngIf="!isLoginInProgress" class="ion-no-margin" expand="block" type="submit">
-      Einloggen
-    </ion-button>
-    <ion-button *ngIf="isLoginInProgress" class="ion-no-margin" disabled expand="block">
-      <ion-spinner name="dots"></ion-spinner>
-    </ion-button>
+    <div class="ion-padding">
+      <ion-button *ngIf="!isLoginInProgress" class="ion-no-margin" expand="block" type="submit">
+        Einloggen
+      </ion-button>
+      <ion-button *ngIf="isLoginInProgress" class="ion-no-margin" disabled expand="block">
+        <ion-spinner name="dots"></ion-spinner>
+      </ion-button>
+    </div>
   </form>
 </ion-content>

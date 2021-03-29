@@ -11,7 +11,29 @@
 </ion-header>
 
 <ion-content>
-<div class="ion-padding">
-  <h1>Hallo admin!</h1>
-</div>
+  <div class="ion-padding">
+    <h1>Hallo {{user.displayname}}!</h1>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-img src="https://coach.geton-training.de/wp-content/uploads/2021/03/Lavendel-scaled.jpg"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle>Intervention</ion-card-subtitle>
+            <ion-card-title>Selbstkritik</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem Ipsum
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <h3>Nächste Aktionen...</h3>
+        <ion-button>Meditation</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
