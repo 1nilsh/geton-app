@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './common/auth/service/authentication.service';
 import { Router } from '@angular/router';
-import { MenuController, Platform } from '@ionic/angular';
+import { MenuController, ModalController, Platform } from '@ionic/angular';
 import { User } from './common/auth/model/user';
+import { ImprintPage } from './impressum/imprint-page.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit{
     private platform: Platform,
     private menu: MenuController,
     private auth: AuthenticationService,
+    private modalController: ModalController
   ) {
     this.initializeApp();
   }
@@ -32,9 +35,16 @@ export class AppComponent implements OnInit{
 
   private initializeApp() {
     this.platform.ready().then(() => {
-      this.auth.currentUser.subscribe(user => {
+      this.auth.getCurrentUser().subscribe(user => {
         this.currentUser = user;
       });
     });
+  }
+
+  async openImprintModal() {
+    const modal = await this.modalController.create({
+      component: ImprintPage,
+    });
+    return await modal.present();
   }
 }

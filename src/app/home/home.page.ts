@@ -9,18 +9,18 @@ import { User } from '../common/auth/model/user';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user: User;
+  currentUser: User;
 
   constructor(private auth: AuthenticationService, private router: Router) {
+    this.auth.getCurrentUser().subscribe((user: User) => {
+      this.currentUser = user;
+    });
   }
 
   ngOnInit() {
-    if (this.auth.getUser() == null) {
+    if (!this.currentUser) {
       this.router.navigateByUrl('/login');
     }
-    this.auth.currentUser.subscribe(user => {
-      this.user = user;
-    });
   }
 
 }

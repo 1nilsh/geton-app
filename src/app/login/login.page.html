@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="hasLoginFailed" class="ion-margin ion-padding rounded-shadow-box login-failed-message"
+       [innerHTML]="loginError.message"></div>
+
   <form (ngSubmit)="submitLoginForm()" [formGroup]="loginForm">
     <ion-item>
       <ion-label position="floating">Nutzername / E-Mail</ion-label>
@@ -24,4 +27,10 @@
       </ion-button>
     </div>
   </form>
+
+  <div class="footer ion-padding">
+    <ion-text color="primary">
+      <span (click)="openImprintModal()">Impressum</span>
+    </ion-text>
+  </div>
 </ion-content>

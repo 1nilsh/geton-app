@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../common/auth/service/authentication.service';
+import { User } from '../common/auth/model/user';
+import { LoginError } from '../common/auth/model/login-error';
+import { ModalController } from '@ionic/angular';
+import { ImprintPage } from '../impressum/imprint-page.component';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +16,13 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   isLoginInProgress = false;
   hasLoginFailed = false;
+  loginError: LoginError;
 
   constructor(
     private auth: AuthenticationService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -25,9 +31,11 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.auth.getUser() !== null) {
-      this.router.navigateByUrl('/home');
-    }
+    this.auth.getCurrentUser().subscribe((user: User) => {
+      if (user !== null) {
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
 
   submitLoginForm() {
@@ -36,11 +44,20 @@ export class LoginPage implements OnInit {
     this.auth.login(values.username, values.password).then(wasSuccessful => {
       if (wasSuccessful) {
         this.loginWorked();
-      } else {
-        this.isLoginInProgress = false;
-        this.hasLoginFailed = true;
       }
+    }).catch(error => {
+      this.isLoginInProgress = false;
+      this.hasLoginFailed = true;
+      console.log(error.error);
+      this.loginError = error.error;
     });
+  }
+
+  async openImprintModal() {
+    const modal = await this.modalController.create({
+      component: ImprintPage,
+    });
+    return await modal.present();
   }
 
   private loginWorked(): void {

@@ -91,3 +91,12 @@ ion-item.selected {
 ion-menu ion-img {
   width: 40%;
 }
+
+.imprint-link {
+  background: var(--ion-color-primary);
+  a {
+    color: var(--ion-color-primary-contrast);
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}

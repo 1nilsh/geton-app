@@ -1,48 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../model/user';
+import { Storage } from '@capacitor/core';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private messageSource = new BehaviorSubject(null as User);
-  public currentUser = this.messageSource.asObservable();
+  private currentUser = this.messageSource.asObservable();
 
-  private url = 'http://192.168.33.10/?rest_route=/app/v1/auth';
+  private url = environment.api_base_url + '/v1/auth';
 
   constructor(private http: HttpClient) {
-    const currentUser = this.getUser();
-    if (currentUser) {
-      this.messageSource.next(currentUser);
-    }
+    this.loadUserFromStorage().then(user => {
+      this.messageSource.next(user);
+    });
   }
 
   public async login(username: string, password: string): Promise<boolean> {
-    const authenticationRequest = {username, password};
-    try {
-      const response = await this.http.post<User>(this.url, authenticationRequest)
-        .toPromise();
-      this.saveUser(response);
-      console.log(response);
-      this.messageSource.next(response);
-    } catch (error) {
-      return false;
-    }
+    const authenticationRequest = { username, password };
+
+    const response = await this.http.post<User>(this.url, authenticationRequest)
+      .toPromise();
+    this.saveUser(response);
+
+    this.messageSource.next(response);
+
     return true;
   }
 
   public saveUser(user: User): void {
-    sessionStorage.setItem('user', JSON.stringify(user));
+    Storage.set({
+      key: 'user',
+      value: JSON.stringify(user)
+    });
   }
 
-  public getUser(): User {
-    return JSON.parse(sessionStorage.getItem('user'));
+  public getCurrentUser(): Observable<User> {
+    return this.currentUser;
   }
 
   public logout(): void {
-    sessionStorage.removeItem('user');
+    Storage.remove({ key: 'user' });
     this.messageSource.next(null);
+  }
+
+  private async loadUserFromStorage(): Promise<User> {
+    const data = await Storage.get({ key: 'user' });
+    return JSON.parse(data.value);
   }
 }

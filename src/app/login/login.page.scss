@@ -1,0 +1,16 @@
+.login-failed-message {
+  background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+
+  span {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
