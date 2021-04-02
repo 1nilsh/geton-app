@@ -21,6 +21,7 @@ pipelines:
     - step:
         name: 'Deployment to Staging'
         deployment: staging
+        trigger: 'manual'
         script:
           - './node_modules/@ionic/cli/bin/ionic build --configuration=staging'
           - 'tar -cf www-dist_staging_$BITBUCKET_BUILD_NUMBER.tar www/'
