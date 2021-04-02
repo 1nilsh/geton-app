@@ -5,7 +5,7 @@ import { AuthenticationService } from '../common/auth/service/authentication.ser
 import { User } from '../common/auth/model/user';
 import { LoginError } from '../common/auth/model/login-error';
 import { ModalController } from '@ionic/angular';
-import { ImprintPage } from '../impressum/imprint-page.component';
+import { ImprintPage } from '../imprint/imprint-page.component';
 
 @Component({
   selector: 'app-login',

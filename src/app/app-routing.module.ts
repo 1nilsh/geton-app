@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
+  {
+    path: 'imprint',
+    loadChildren: () => import('./imprint/imprint.module').then(m => m.ImprintPageModule)
+  },
 ];
 
 @NgModule({
