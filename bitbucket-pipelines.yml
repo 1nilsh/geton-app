@@ -3,11 +3,14 @@ image: node:12.18.1
 pipelines:
   default:
     - step:
+        name: 'SSSHHH'
+        script:
+          - ssh bitbucket@coachstaging.geton-training.de -p 2221 'ls -la /var/www/app'
+    - step:
         name: 'Build and Test'
         caches:
           - node
         script:
-          - ssh --help
           - npm install
           #- npm run test -- --no-watch --no-progress
         artifacts:
@@ -22,9 +25,8 @@ pipelines:
         name: 'Deployment to Staging'
         deployment: staging
         script:
-          - ls -la
           - ./node_modules/@ionic/cli/bin/ionic build --configuration=staging
-          - ls -la
+          - ssh bitbucket@coachstaging.geton-training.de -p 2221 'ls -la /var/www/app'
     - step:
         name: 'Deployment to Production'
         deployment: production
