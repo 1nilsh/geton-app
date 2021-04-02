@@ -9,6 +9,8 @@ pipelines:
         script:
           - npm install
           #- npm run test -- --no-watch --no-progress
+        artifacts:
+          - node_modules/**
     - step:
         name: 'Lint'
         script:
@@ -21,6 +23,8 @@ pipelines:
         script:
           - ionic build --configuration=staging
           - ls -la
+        artifacts:
+          - www/**
     - step:
         name: 'Deployment to Production'
         deployment: production
