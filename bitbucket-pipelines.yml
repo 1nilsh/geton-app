@@ -21,13 +21,12 @@ pipelines:
         name: 'Deployment to Staging'
         deployment: staging
         script:
-          - ionic build --configuration=staging
           - ls -la
-        artifacts:
-          - www/**
+          - ./node_modules/@ionic/cli/bin/ionic build --configuration=staging
+          - ls -la
     - step:
         name: 'Deployment to Production'
         deployment: production
         trigger: 'manual'
         script:
-          - ionic build --configuration=production
+          - ./node_modules/@ionic/cli/bin/ionic build --configuration=production
