@@ -16,16 +16,21 @@ pipelines:
         script:
           - npm run lint
 
-    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
+    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy
+    # see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
     - step:
         name: 'Deployment to Staging'
         deployment: staging
         script:
-          - ./node_modules/@ionic/cli/bin/ionic build --configuration=staging
-          - ssh bitbucket@coachstaging.geton-training.de -p 2221 'ls -la /var/www/app'
-          - ssh bitbucket@coachstaging.geton-training.de -p 2221 'rm -rf /var/www/app/*'
-          - ssh bitbucket@coachstaging.geton-training.de -p 2221 'ls -la /var/www/app'
-          - scp -P 2221 -r www/* bitbucket@coachstaging.geton-training.de:/var/www/app/
+          - './node_modules/@ionic/cli/bin/ionic build --configuration=staging'
+          - 'tar -cf www-dist.tar www/'
+          - 'scp -P 2221 -r www-dist_staging_$BITBUCKET_BUILD_NUMBER.tar bitbucket@coachstaging.geton-training.de:'
+          - 'ssh $COACHSTAGING tar -xf www-dist_staging_$BITBUCKET_BUILD_NUMBER.tar'
+          - 'ssh $COACHSTAGING rm www-dist_staging_$BITBUCKET_BUILD_NUMBER.tar'
+          - 'ssh $COACHSTAGING ls -la /var/www/app'
+          - 'ssh $COACHSTAGING rm -rf /var/www/app'
+          - 'ssh $COACHSTAGING mv ~/www /var/www/app'
+          - 'ssh $COACHSTAGING ls -la /var/www/app'
     - step:
         name: 'Deployment to Production'
         deployment: production
