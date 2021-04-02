@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "de.leuphana.cosa-app",
   "appName": "cosa-app",
   "bundledWebRuntime": false,
   "npmClient": "npm",

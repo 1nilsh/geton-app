@@ -4,16 +4,53 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AuthenticationService } from './common/auth/service/authentication.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Observable } from 'rxjs';
+import { User } from './common/auth/model/user';
+import { HomePage } from './home/home.page';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
 
 
   beforeEach(waitForAsync(() => {
+    const currentUserMock$ = new Observable<User>(observer => {
+      observer.next({
+        username: 'foo',
+        displayname: 'Foo bar',
+        email: 'foo@bar.baz',
+        jwt: '1234'
+      });
+      observer.complete();
+    });
+
+    const authServiceMock = jasmine.createSpyObj('AuthenticationService', { getCurrentUser: currentUserMock$ });
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [
+        BrowserModule,
+        RouterTestingModule.withRoutes([
+          { path: 'home', component: HomePage }
+        ]),
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        {
+          provide: ModalController,
+          useValue: jasmine.createSpyObj('ModalController', ['create'])
+        },
+        {
+          provide: AuthenticationService,
+          useValue: authServiceMock
+        },
+      ]
     }).compileComponents();
   }));
 
@@ -22,25 +59,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-
-  it('should have menu labels', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].textContent).toContain('Inbox');
-    expect(menuItems[1].textContent).toContain('Outbox');
-  }));
-
-  it('should have urls', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/folder/Inbox');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/folder/Outbox');
-  }));
-
 });
