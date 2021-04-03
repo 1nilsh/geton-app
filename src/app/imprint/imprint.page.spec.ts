@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ImprintPage } from './imprint-page.component';
+import { ImprintPage } from './imprint.page';
 
 describe('ImpressumPage', () => {
   let component: ImprintPage;
@@ -9,7 +9,7 @@ describe('ImpressumPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImprintPage ],
+      declarations: [ImprintPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

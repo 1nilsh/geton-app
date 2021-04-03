@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ImprintPage } from './imprint-page.component';
+import { ImprintPage } from './imprint.page';
 
 @NgModule({
   imports: [

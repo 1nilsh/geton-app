@@ -3,8 +3,8 @@ import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-impressum',
-  templateUrl: './imprint-page.component.html',
-  styleUrls: ['./imprint-page.component.scss'],
+  templateUrl: './imprint.page.html',
+  styleUrls: ['./imprint.page.scss'],
 })
 export class ImprintPage implements OnInit {
 
