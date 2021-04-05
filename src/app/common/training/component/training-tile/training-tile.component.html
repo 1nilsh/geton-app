@@ -1,0 +1,15 @@
+<ion-card *ngIf="training && !isSelected">
+  <ion-img [src]="training.image" *ngIf="training.image"></ion-img>
+  <ion-card-header>
+    <ion-card-subtitle>Training</ion-card-subtitle>
+    <ion-card-title>{{training.name}}</ion-card-title>
+  </ion-card-header>
+</ion-card>
+
+<ion-card class="tile-selected" *ngIf="training && isSelected">
+  <ion-img [src]="training.image" *ngIf="training.image"></ion-img>
+  <ion-card-header>
+    <ion-card-subtitle>Training</ion-card-subtitle>
+    <ion-card-title>{{training.name}}</ion-card-title>
+  </ion-card-header>
+</ion-card>

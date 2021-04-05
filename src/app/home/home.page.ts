@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../common/auth/model/user';
 import { AuthenticationService } from '../common/auth/service/authentication.service';
+import { Training } from '../common/training/model/training';
+import { UserTrainingService } from '../common/training/service/user-training.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +13,9 @@ import { AuthenticationService } from '../common/auth/service/authentication.ser
 })
 export class HomePage implements OnInit {
   currentUser: User;
+  currentTraining$: Observable<Training>;
 
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(private auth: AuthenticationService, private trainingService: UserTrainingService) {
 
   }
 
@@ -19,6 +23,7 @@ export class HomePage implements OnInit {
     this.auth.getCurrentUser().subscribe((user: User) => {
       this.currentUser = user;
     });
+    this.currentTraining$ = this.trainingService.getSelectedTraining();
   }
 
 }

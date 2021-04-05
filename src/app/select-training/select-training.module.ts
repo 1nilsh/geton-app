@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { SelectTrainingPageRoutingModule } from './select-training-routing.module';
 
-import { HomePage } from './home.page';
+import { SelectTrainingPage } from './select-training.page';
 import { TitlebarModule } from '../common/titlebar/titlebar.module';
 import { TrainingModule } from '../common/training/training.module';
 
@@ -15,10 +15,10 @@ import { TrainingModule } from '../common/training/training.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    SelectTrainingPageRoutingModule,
     TitlebarModule,
     TrainingModule
   ],
-  declarations: [HomePage]
+  declarations: [SelectTrainingPage]
 })
-export class HomePageModule {}
+export class SelectTrainingPageModule {}

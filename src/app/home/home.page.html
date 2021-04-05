@@ -1,14 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
-    <ion-buttons slot="end">
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-titlebar titletext="Home"></app-titlebar>
 
 <ion-content>
   <div class="ion-padding">
@@ -18,16 +8,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card>
-          <ion-img src="https://coach.geton-training.de/wp-content/uploads/2021/03/Lavendel-scaled.jpg"></ion-img>
-          <ion-card-header>
-            <ion-card-subtitle>Intervention</ion-card-subtitle>
-            <ion-card-title>Selbstkritik</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Lorem Ipsum
-          </ion-card-content>
-        </ion-card>
+        <app-training-tile *ngIf="currentTraining$ | async" [training]="currentTraining$ | async"></app-training-tile>
+        <app-training-placeholder *ngIf="!(currentTraining$ | async)"></app-training-placeholder>
       </ion-col>
       <ion-col>
         <h3>Nächste Aktionen...</h3>

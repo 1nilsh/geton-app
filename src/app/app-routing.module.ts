@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'imprint',
     loadChildren: () => import('./imprint/imprint.module').then(m => m.ImprintPageModule)
   },
+  {
+    path: 'select-training',
+    loadChildren: () => import('./select-training/select-training.module').then( m => m.SelectTrainingPageModule)
+  },
 ];
 
 @NgModule({

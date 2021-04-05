@@ -1,13 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissSelf()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Impressum</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-titlebar titletext="Impressum" [showMenuButton]="false">
+  <ion-button (click)="dismissSelf()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+</app-titlebar>
 
 <ion-content>
   <div class="ion-padding imprint-text">
