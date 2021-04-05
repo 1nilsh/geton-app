@@ -4,7 +4,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let training of showTrainings$ | async">
-        <app-training-tile [isSelected]="training.id == (selectedTraining$ | async).id" [training]="training"
+        <app-training-tile [isSelected]="training?.id == (selectedTraining$ | async)?.id" [training]="training"
                            (click)="trainingClickHandler(training)"></app-training-tile>
       </ion-col>
     </ion-row>
