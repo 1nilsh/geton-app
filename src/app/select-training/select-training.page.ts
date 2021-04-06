@@ -10,13 +10,16 @@ import { Router } from '@angular/router';
 })
 export class SelectTrainingPage implements OnInit {
 
-  showTrainings$ = this.userTrainingService.getUserTrainings();
+  shownTrainings: Training[];
   selectedTraining$ = this.userTrainingService.getSelectedTraining();
 
   constructor(private userTrainingService: UserTrainingService, private router: Router) {
   }
 
   ngOnInit() {
+    this.userTrainingService.getUserTrainings().then(trainings => {
+      this.shownTrainings = trainings;
+    });
   }
 
   public trainingClickHandler(training: Training): void {
@@ -24,4 +27,10 @@ export class SelectTrainingPage implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  doRefresh(event: Event | any) {
+    this.userTrainingService.getUserTrainings(true).then(trainings => {
+      this.shownTrainings = trainings;
+      event.target.complete();
+    });
+  }
 }

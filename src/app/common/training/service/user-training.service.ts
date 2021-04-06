@@ -15,7 +15,6 @@ export class UserTrainingService {
   private selectedTraining = this.selectedTrainingMessageSource.asObservable();
 
   constructor(private trainingDataService: UserTrainingDataService) {
-    this.loadTrainingDataFromStorage();
   }
 
   public async getUserTrainings(forceRefresh: boolean = false): Promise<Training[]> {
@@ -24,6 +23,8 @@ export class UserTrainingService {
       this.saveTrainingsToStorage(this.trainings);
       return this.trainings;
     }
+
+    await this.loadTrainingDataFromStorage();
 
     if (!this.trainings) {
       return await this.getUserTrainings(true);
@@ -41,13 +42,13 @@ export class UserTrainingService {
     this.selectedTrainingMessageSource.next(training);
   }
 
-  private loadTrainingDataFromStorage(): void {
-    Storage.get({ key: 'trainings' }).then(data => {
-      this.trainings = JSON.parse(data.value);
-    });
-    Storage.get({ key: 'selected_training' }).then(data => {
-      this.selectedTrainingMessageSource.next(JSON.parse(data.value));
-    });
+  private async loadTrainingDataFromStorage(): Promise<void> {
+    this.trainings = JSON.parse((await Storage.get({ key: 'trainings' })).value);
+    this.selectedTrainingMessageSource.next(
+      JSON.parse(
+        (await Storage.get({ key: 'selected_training' })).value
+      )
+    );
   }
 
   private saveTrainingsToStorage(trainings: Training[]): void {
