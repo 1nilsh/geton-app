@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'select-training',
-    loadChildren: () => import('./select-training/select-training.module').then( m => m.SelectTrainingPageModule)
+    loadChildren: () => import('./select-training/select-training.module').then( m => m.SelectTrainingPageModule),
+    canActivate: [AuthenticationGuard]
   },
 ];
 

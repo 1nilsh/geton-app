@@ -33,7 +33,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.auth.getCurrentUser().subscribe((user: User) => {
       if (user !== null) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home').then(didNavigate => {
+          window.location.replace('');
+        });
       }
     });
   }
@@ -48,7 +50,7 @@ export class LoginPage implements OnInit {
     }).catch(error => {
       this.isLoginInProgress = false;
       this.hasLoginFailed = true;
-      console.log(error.error);
+      console.error(error.error);
       this.loginError = error.error;
     });
   }
