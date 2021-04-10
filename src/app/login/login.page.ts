@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../common/auth/service/authentication.service';
 import { User } from '../common/auth/model/user';
 import { LoginError } from '../common/auth/model/login-error';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ImprintPage } from '../imprint/imprint.page';
 
 @Component({
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
     private auth: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -34,7 +35,6 @@ export class LoginPage implements OnInit {
     this.auth.getCurrentUser().subscribe((user: User) => {
       if (user !== null) {
         this.router.navigateByUrl('/home').then(didNavigate => {
-          window.location.replace('');
         });
       }
     });
@@ -65,6 +65,11 @@ export class LoginPage implements OnInit {
   private loginWorked(): void {
     this.isLoginInProgress = false;
     this.hasLoginFailed = false;
-    this.router.navigateByUrl('/home');
+    this.toastController.create({
+      message: 'Login erfolgreich!',
+      duration: 2000
+    }).then(toast => {
+      toast.present();
+    });
   }
 }
