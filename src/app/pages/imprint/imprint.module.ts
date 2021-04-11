@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ImprintPage } from './imprint.page';
-import { TitlebarModule } from '../common/titlebar/titlebar.module';
+import { TitlebarModule } from '../../common/titlebar/titlebar.module';
 
 @NgModule({
   imports: [

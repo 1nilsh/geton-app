@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SelectTrainingPageRoutingModule } from './select-training-routing.module';
 
 import { SelectTrainingPage } from './select-training.page';
-import { TitlebarModule } from '../common/titlebar/titlebar.module';
-import { TrainingModule } from '../common/training/training.module';
+import { TitlebarModule } from '../../common/titlebar/titlebar.module';
+import { TrainingModule } from '../../common/training/training.module';
 
 @NgModule({
   imports: [

@@ -9,7 +9,7 @@ import { AuthenticationService } from './common/auth/service/authentication.serv
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs';
 import { User } from './common/auth/model/user';
-import { HomePage } from './home/home.page';
+import { HomePage } from './pages/home/home.page';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

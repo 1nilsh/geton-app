@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './common/auth/service/authentication.service';
-import { Router } from '@angular/router';
 import { MenuController, ModalController, Platform } from '@ionic/angular';
 import { User } from './common/auth/model/user';
-import { ImprintPage } from './imprint/imprint.page';
+import { ImprintPage } from './pages/imprint/imprint.page';
 
 @Component({
   selector: 'app-root',

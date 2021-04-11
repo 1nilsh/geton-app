@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../common/auth/service/authentication.service';
-import { User } from '../common/auth/model/user';
-import { LoginError } from '../common/auth/model/login-error';
+import { AuthenticationService } from '../../common/auth/service/authentication.service';
+import { User } from '../../common/auth/model/user';
+import { LoginError } from '../../common/auth/model/login-error';
 import { ModalController, ToastController } from '@ionic/angular';
 import { ImprintPage } from '../imprint/imprint.page';
 

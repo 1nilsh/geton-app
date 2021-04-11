@@ -11,7 +11,7 @@ ion-menu.md .menu-header {
   padding-top: 20px;
   padding-left: 8px;
   padding-right: 8px;
-  background: var(--ion-color-primary-contrast);
+  background: var(--ion-item-background, var(--ion-background-color, #fff));
 
   ion-img {
     margin: auto;
@@ -21,7 +21,7 @@ ion-menu.md .menu-header {
 ion-menu.md .menu-body {
   padding-left: 8px;
   padding-right: 8px;
-  background: var(--ion-color-primary-contrast);
+  background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
 
 ion-menu.md ion-list {

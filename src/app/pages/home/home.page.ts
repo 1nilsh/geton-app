@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../common/auth/model/user';
-import { AuthenticationService } from '../common/auth/service/authentication.service';
-import { Training } from '../common/training/model/training';
-import { UserTrainingService } from '../common/training/service/user-training.service';
+import { User } from '../../common/auth/model/user';
+import { AuthenticationService } from '../../common/auth/service/authentication.service';
+import { Training } from '../../common/training/model/training';
+import { UserTrainingService } from '../../common/training/service/user-training.service';
 import { Observable } from 'rxjs';
 
 @Component({

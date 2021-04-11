@@ -10,9 +10,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class UserTrainingService {
 
   private trainings: Training[];
+  private selectedTraining: Training;
 
   private selectedTrainingMessageSource = new BehaviorSubject(null as Training);
-  private selectedTraining = this.selectedTrainingMessageSource.asObservable();
+  private selectedTraining$ = this.selectedTrainingMessageSource.asObservable();
 
   constructor(private trainingDataService: UserTrainingDataService) {
   }
@@ -34,7 +35,8 @@ export class UserTrainingService {
   }
 
   public getSelectedTraining(): Observable<Training> {
-    return this.selectedTraining;
+    this.getUserTrainings();
+    return this.selectedTraining$;
   }
 
   public selectTraining(training: Training): void {
