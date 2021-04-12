@@ -32,7 +32,7 @@ export class SelectTrainingPage implements OnInit {
   }
 
   doRefresh(event: Event | any) {
-    this.userTrainingService.getUserTrainings(true).then(trainings => {
+    this.userTrainingService.getUserTrainings().then(trainings => {
       this.shownTrainings = trainings;
       event.target.complete();
     });

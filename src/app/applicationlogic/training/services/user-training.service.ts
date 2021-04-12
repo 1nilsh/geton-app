@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../../../data/models/training';
-import { UserTrainingDataService } from '../../../data/api-data-services/user-training-data.service';
-import { Storage } from '@capacitor/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TrainingStorageService } from '../../../data/training-data/services/training-storage.service';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,60 +10,37 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class UserTrainingService {
 
   private trainings: Training[];
+
   private selectedTraining: Training;
 
   private selectedTrainingMessageSource = new BehaviorSubject(null as Training);
   private selectedTraining$ = this.selectedTrainingMessageSource.asObservable();
 
-  constructor(private trainingDataService: UserTrainingDataService) {
+  constructor(private trainingStorageService: TrainingStorageService) {
   }
 
-  public async getUserTrainings(forceRefresh: boolean = false): Promise<Training[]> {
-    if (forceRefresh) {
-      this.trainings = await this.trainingDataService.getAllUserTrainings().toPromise();
-      this.saveTrainingsToStorage(this.trainings);
-      return this.trainings;
-    }
-
-    await this.loadTrainingDataFromStorage();
-
+  public async getUserTrainings(): Promise<Training[]> {
     if (!this.trainings) {
-      return await this.getUserTrainings(true);
+      this.trainings = await this.trainingStorageService.loadTrainingsFromStorage();
     }
 
     return this.trainings;
   }
 
   public getSelectedTraining(): Observable<Training> {
-    this.getUserTrainings();
-    return this.selectedTraining$;
+    if (!this.selectedTraining) {
+      this.trainingStorageService.loadSelectedTrainingFromStorage().then(training => {
+        this.selectedTraining = training;
+        this.selectedTrainingMessageSource.next(this.selectedTraining);
+      });
+    }
+    return this.selectedTraining$.pipe(filter(value => value !== null));
   }
 
   public selectTraining(training: Training): void {
-    this.saveSelectedTrainingToStorage(training);
+    this.trainingStorageService.saveSelectedTrainingToStorage(training);
     this.selectedTrainingMessageSource.next(training);
   }
 
-  private async loadTrainingDataFromStorage(): Promise<void> {
-    this.trainings = JSON.parse((await Storage.get({ key: 'trainings' })).value);
-    this.selectedTrainingMessageSource.next(
-      JSON.parse(
-        (await Storage.get({ key: 'selected_training' })).value
-      )
-    );
-  }
 
-  private saveTrainingsToStorage(trainings: Training[]): void {
-    Storage.set({
-      key: 'trainings',
-      value: JSON.stringify(trainings)
-    });
-  }
-
-  private saveSelectedTrainingToStorage(training: Training): void {
-    Storage.set({
-      key: 'selected_training',
-      value: JSON.stringify(training)
-    });
-  }
 }

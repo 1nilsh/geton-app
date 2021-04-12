@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AudioFeature } from '../../../../data/models/audio-feature';
 import { Audio } from '../../../../data/models/audio';
-import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-audioplayer',
@@ -11,20 +11,29 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 export class AudioplayerComponent implements OnInit {
 
   @Input() audio: Audio;
+  @Input() image: string;
+  @Input() trainingName: string;
+  @ViewChild('audioElement', { static: false }) audioElement: ElementRef;
 
-  constructor(private modalController: ModalController, private nativeAudio: NativeAudio) {
+  isCurrentlyPlaying: boolean;
+
+  constructor(private modalController: ModalController) {
   }
 
   ngOnInit() {
-    this.nativeAudio.preloadSimple(this.audio.audioName, this.audio.audioUrl);
   }
 
   dismissSelf() {
     this.modalController.dismiss();
   }
 
-  pressPlay() {
-    this.nativeAudio.play(this.audio.audioName);
-  }
+  handlePressPlayPauseControl() {
+    if (this.isCurrentlyPlaying) {
+      this.audioElement.nativeElement.pause();
+    } else {
+      this.audioElement.nativeElement.play();
+    }
 
+    this.isCurrentlyPlaying = !this.isCurrentlyPlaying;
+  }
 }

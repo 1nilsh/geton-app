@@ -10,8 +10,10 @@ export class AudioListItemComponent implements OnInit {
 
   @Input() audio: Audio;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

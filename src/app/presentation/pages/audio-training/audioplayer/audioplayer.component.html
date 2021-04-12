@@ -6,16 +6,20 @@
 
 <ion-content fullscreen>
   <ion-card>
-    <img src="https://ionicframework.com/docs/demos/api/card/madison.jpg"/>
+    <ion-img [src]="image"></ion-img>
     <ion-card-header>
-      <ion-card-subtitle>Lektion: {{audio.lesson.name}}</ion-card-subtitle>
-      <ion-card-title>{{audio.audioName}}</ion-card-title>
+      <ion-card-subtitle>{{trainingName}}</ion-card-subtitle>
+      <ion-card-title>{{audio.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
-      <ion-fab-button color="primary" class="playbutton" (click)="pressPlay()">
-        <ion-icon name="play" size="large"></ion-icon>
+      <ion-fab-button color="primary" class="playbutton" (click)="handlePressPlayPauseControl()">
+        <ion-icon *ngIf="isCurrentlyPlaying" name="pause" size="large"></ion-icon>
+        <ion-icon *ngIf="!isCurrentlyPlaying" name="play" size="large"></ion-icon>
       </ion-fab-button>
-      <ion-progress-bar value="0.5"></ion-progress-bar>
+      <ion-progress-bar value="0" #progressBar></ion-progress-bar>
     </ion-card-content>
   </ion-card>
+  <audio #audioElement (timeupdate)="progressBar.value = audioElement.currentTime / audioElement.duration">
+    <source [src]="audio.location">
+  </audio>
 </ion-content>
