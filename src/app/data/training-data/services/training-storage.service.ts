@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/core';
+import { Filesystem, FilesystemDirectory, Storage } from '@capacitor/core';
 import { Training } from '../../models/training';
+import { DownloadService } from '../../../infrastructure/download/download.service';
 
 @Injectable({
   providedIn: 'root'
 })
+// @Todo: implement SQLite
 export class TrainingStorageService {
 
-  constructor() {
+  constructor(private downloadService: DownloadService) {
   }
 
   async saveTrainingsToStorage(trainings: Training[]): Promise<void> {
+    for (let i = 0; i < trainings.length; i++) {
+      const image = await this.downloadService.downloadBlob(trainings[i].image);
+      trainings[i].image = image.blob;
+    }
+
     return Storage.set({
       key: 'trainings',
       value: JSON.stringify(trainings)

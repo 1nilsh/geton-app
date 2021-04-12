@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../data/models/user';
 import { Storage } from '@capacitor/core';
 import { environment } from '@environment/environment';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private messageSource = new BehaviorSubject(null as User);
-  private currentUser = this.messageSource.asObservable();
+  private currentUser$ = this.messageSource.asObservable();
 
   private url = environment.api_base_url + '/v1/auth';
 
@@ -40,7 +41,7 @@ export class AuthenticationService {
   }
 
   public getCurrentUser(): Observable<User> {
-    return this.currentUser;
+    return this.currentUser$.pipe(filter(value => value !== null));
   }
 
   public logout(): void {

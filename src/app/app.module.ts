@@ -35,12 +35,14 @@ import { SyncService } from './applicationlogic/sync/services/sync.service';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private syncService: SyncService, private loadingController: LoadingController) {
-    this.doSync();
+  constructor(private syncService: SyncService, private loadingController: LoadingController, private auth: AuthenticationService) {
+    this.auth.getCurrentUser().subscribe(user => {
+      this.doSync();
+    });
   }
 
   private async doSync(): Promise<void> {
-    if (! await this.syncService.isSyncNecessary()) {
+    if (!(await this.syncService.isSyncNecessary())) {
       return;
     }
     const loading = await this.loadingController.create({
@@ -50,6 +52,6 @@ export class AppModule {
 
     await this.syncService.fullSync();
 
-    loading.dismiss();
+    await loading.dismiss();
   }
 }
