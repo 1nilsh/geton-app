@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Filesystem, FilesystemDirectory, Storage } from '@capacitor/core';
+import { Storage } from '@capacitor/core';
 import { Training } from '../../models/training';
 import { DownloadService } from '../../../infrastructure/download/download.service';
 
@@ -14,8 +14,10 @@ export class TrainingStorageService {
 
   async saveTrainingsToStorage(trainings: Training[]): Promise<void> {
     for (let i = 0; i < trainings.length; i++) {
-      const image = await this.downloadService.downloadBlob(trainings[i].image);
-      trainings[i].image = image.blob;
+      if (trainings[i].image) {
+        const image = await this.downloadService.downloadBlob(trainings[i].image);
+        trainings[i].image = image.blob;
+      }
     }
 
     return Storage.set({
