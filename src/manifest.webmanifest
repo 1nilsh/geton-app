@@ -1,9 +1,12 @@
 {
   "name": "Cosa App",
-  "short_name": "app",
-  "theme_color": "#1976d2",
+  "short_name": "CosaApp",
+  "description": "",
+  "lang": "de-DE",
+  "theme_color": "#009640",
   "background_color": "#fafafa",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "scope": "./",
   "start_url": "./",
   "icons": [
