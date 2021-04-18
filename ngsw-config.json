@@ -31,13 +31,13 @@
   ],
   "dataGroups": [
     {
-      "name": "remote-ressources",
+      "name": "remote-resources",
       "cacheConfig": {
         "maxSize": 100,
         "maxAge": "30d"
       },
       "urls": [
-        "**/*.mp3"
+        "https://**/*.mp3"
       ]
     }
   ]

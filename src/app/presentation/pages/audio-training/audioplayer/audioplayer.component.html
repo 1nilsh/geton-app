@@ -5,21 +5,42 @@
 </app-titlebar>
 
 <ion-content fullscreen>
-  <ion-card>
-    <ion-img [src]="image"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>{{trainingName}}</ion-card-subtitle>
-      <ion-card-title>{{audio.name}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center">
-      <ion-fab-button color="primary" class="playbutton" (click)="handlePressPlayPauseControl()">
-        <ion-icon *ngIf="isCurrentlyPlaying" name="pause" size="large"></ion-icon>
-        <ion-icon *ngIf="!isCurrentlyPlaying" name="play" size="large"></ion-icon>
-      </ion-fab-button>
-      <ion-progress-bar value="0" #progressBar></ion-progress-bar>
-    </ion-card-content>
-  </ion-card>
-  <audio #audioElement (timeupdate)="progressBar.value = audioElement.currentTime / audioElement.duration">
-    <source [src]="audio.location">
-  </audio>
+  <div class="v-center">
+    <ion-card>
+      <ion-img [src]="image"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{trainingName}}</ion-card-subtitle>
+        <ion-card-title>{{audio.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center">
+
+        <div class="action-buttons">
+          <ion-fab-button size="small" class="inline-button"
+                          (click)="audioElement.currentTime = audioElement.currentTime - 15">
+            <ion-icon name="play-back"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="primary" class="inline-button" (click)="handlePressPlayPauseControl()">
+            <ion-icon *ngIf="isCurrentlyPlaying" name="pause" size="large"></ion-icon>
+            <ion-icon *ngIf="!isCurrentlyPlaying" name="play" size="large"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button size="small" class="inline-button"
+                          (click)="audioElement.currentTime = audioElement.currentTime + 15">
+            <ion-icon name="play-forward"></ion-icon>
+          </ion-fab-button>
+        </div>
+
+        <ion-progress-bar value="0" #progressBar (click)="handleProgressBarClick($event)"></ion-progress-bar>
+        <ion-text #timecode class="ion-margin-vertical">
+          {{audioElement.currentTime | sToHms}} / {{audioElement.duration| sToHms}}
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+    <audio #audioElement
+           (timeupdate)="progressBar.value = audioElement.currentTime / audioElement.duration"
+           (play)="isCurrentlyPlaying = true"
+           (pause)="isCurrentlyPlaying = false"
+    >
+      <source [src]="audio.location">
+    </audio>
+  </div>
 </ion-content>

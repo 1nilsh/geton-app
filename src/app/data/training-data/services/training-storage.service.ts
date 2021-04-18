@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@capacitor/core';
 import { Training } from '../../models/training';
-import { DownloadService } from '../../../infrastructure/download/download.service';
+import { DownloadService } from '@app/infrastructure/download/download.service';
 
 @Injectable({
   providedIn: 'root'

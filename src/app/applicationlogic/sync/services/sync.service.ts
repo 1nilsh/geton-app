@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TrainingDataService } from '../../../data/training-data/services/training-data.service';
-import { AudioDataService } from '../../../data/audio-data/services/audio-data.service';
-import { TrainingStorageService } from '../../../data/training-data/services/training-storage.service';
-import { Training } from '../../../data/models/training';
-import { AppStateStorageService } from '../../../data/app-state/services/app-state-storage.service';
+import { TrainingDataService } from '@app/data/training-data/services/training-data.service';
+import { AudioDataService } from '@app/data/audio-data/services/audio-data.service';
+import { TrainingStorageService } from '@app/data/training-data/services/training-storage.service';
+import { Training } from '@app/data/models/training';
+import { AppStateStorageService } from '@app/data/app-state/services/app-state-storage.service';
 
 @Injectable({
   providedIn: 'root'

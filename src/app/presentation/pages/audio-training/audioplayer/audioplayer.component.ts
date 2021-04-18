@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { AudioFeature } from '../../../../data/models/audio-feature';
-import { Audio } from '../../../../data/models/audio';
+import { IonProgressBar, ModalController } from '@ionic/angular';
+import { Audio } from '@app/data/models/audio';
 
 @Component({
   selector: 'app-audioplayer',
@@ -13,6 +12,8 @@ export class AudioplayerComponent implements OnInit {
   @Input() audio: Audio;
   @Input() image: string;
   @Input() trainingName: string;
+
+  @ViewChild('progressBar', { static: false }) progressBar: IonProgressBar;
   @ViewChild('audioElement', { static: false }) audioElement: ElementRef;
 
   isCurrentlyPlaying: boolean;
@@ -33,7 +34,11 @@ export class AudioplayerComponent implements OnInit {
     } else {
       this.audioElement.nativeElement.play();
     }
-
-    this.isCurrentlyPlaying = !this.isCurrentlyPlaying;
   }
+
+  handleProgressBarClick(event: MouseEvent) {
+    const clickPositionInPercent = event.offsetX / (event.target as HTMLElement).offsetWidth;
+    this.audioElement.nativeElement.currentTime = this.audioElement.nativeElement.duration * clickPositionInPercent;
+  }
+
 }

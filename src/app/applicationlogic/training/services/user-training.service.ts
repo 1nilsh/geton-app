@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../../../data/models/training';
+import { Training } from '@app/data/models/training';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TrainingStorageService } from '../../../data/training-data/services/training-storage.service';
+import { TrainingStorageService } from '@app/data/training-data/services/training-storage.service';
 import { filter } from 'rxjs/operators';
 
 @Injectable({

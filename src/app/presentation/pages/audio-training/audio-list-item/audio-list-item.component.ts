@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Audio } from '../../../../data/models/audio';
+import { Audio } from '@app/data/models/audio';
 
 @Component({
   selector: 'app-audio-list-item',

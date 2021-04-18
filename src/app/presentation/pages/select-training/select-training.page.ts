@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserTrainingService } from '../../../applicationlogic/training/services/user-training.service';
-import { Training } from '../../../data/models/training';
+import { UserTrainingService } from '@app/applicationlogic/training/services/user-training.service';
+import { Training } from '@app/data/models/training';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 

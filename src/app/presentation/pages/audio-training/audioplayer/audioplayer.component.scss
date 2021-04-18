@@ -1,6 +1,17 @@
-.playbutton {
+.v-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-buttons {
+  /*--box-shadow: none; mit oder ohne...*/
   margin: 1em auto;
-  --box-shadow: none;
+}
+
+.inline-button {
+  display: inline-block;
 }
 
 ion-progress-bar {

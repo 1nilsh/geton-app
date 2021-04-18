@@ -11,6 +11,7 @@ import { TitlebarModule } from '../../universal-components/titlebar/titlebar.mod
 import { AudioListItemComponent } from './audio-list-item/audio-list-item.component';
 import { AudioplayerComponent } from './audioplayer/audioplayer.component';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { TimeModule } from '@app/infrastructure/time/time.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
     IonicModule,
     AudioTrainingPageRoutingModule,
     TitlebarModule,
+    TimeModule,
   ],
   declarations: [AudioTrainingPage, AudioListItemComponent, AudioplayerComponent],
   providers: [
