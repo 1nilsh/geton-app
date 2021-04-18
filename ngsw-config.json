@@ -23,9 +23,22 @@
       "resources": {
         "files": [
           "/assets/**",
+          "/svg/*.svg",
           "/*.(eot|svg|cur|jpg|jpeg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "remote-ressources",
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "30d"
+      },
+      "urls": [
+        "**/*.mp3"
+      ]
     }
   ]
 }

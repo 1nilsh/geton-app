@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../../applicationlogic/auth/services/authentication.service';
-import { UserTrainingService } from '../../../applicationlogic/training/services/user-training.service';
+import { AuthenticationService } from '@app/applicationlogic/auth/services/authentication.service';
+import { UserTrainingService } from '@app/applicationlogic/training/services/user-training.service';
 
 @Component({
   selector: 'app-home',

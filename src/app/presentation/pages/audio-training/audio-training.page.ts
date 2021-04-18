@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AudioplayerComponent } from './audioplayer/audioplayer.component';
-import { UserTrainingService } from '../../../applicationlogic/training/services/user-training.service';
-import { Training } from '../../../data/models/training';
-import { Audio } from '../../../data/models/audio';
+import { UserTrainingService } from '@app/applicationlogic/training/services/user-training.service';
+import { Training } from '@app/data/models/training';
+import { Audio } from '@app/data/models/audio';
 
 @Component({
   selector: 'app-audio-training',

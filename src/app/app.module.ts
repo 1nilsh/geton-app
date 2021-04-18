@@ -13,7 +13,7 @@ import { AuthenticationService } from './applicationlogic/auth/services/authenti
 import { JwtInterceptorService } from './applicationlogic/auth/services/jwt-interceptor.service';
 import { SyncService } from './applicationlogic/sync/services/sync.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '@environment/environment';
 
 @NgModule({
   declarations: [AppComponent],
