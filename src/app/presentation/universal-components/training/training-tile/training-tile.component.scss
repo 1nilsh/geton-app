@@ -1,6 +1,6 @@
 .tile-selected {
   --background: var(--ion-color-light);
-  box-shadow: 0 12px 4px -10px rgba(0, 0, 0, 0.4), 0 8px 8px 0 rgba(0, 0, 0, 0.28), 0 4px 20px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: var(--md-shadow-12dp);
 
   ion-img::after {
     display: inline-block;

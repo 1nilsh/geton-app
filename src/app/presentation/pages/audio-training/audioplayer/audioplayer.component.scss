@@ -3,6 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 380px;
+  margin: auto;
 }
 
 .action-buttons {
@@ -17,4 +19,6 @@
 ion-progress-bar {
   border-radius: 4px;
   height: 12px;
+  box-shadow: var(--md-shadow-1dp);
+  --buffer-background: var(--ion-color-light-shade);
 }

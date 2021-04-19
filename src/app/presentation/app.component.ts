@@ -11,9 +11,9 @@ import { ImprintPage } from './pages/imprint/imprint.page';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = [
+  public navPages = [
     { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Training wählen', url: '/select-training', icon: 'flower' },
+    { title: 'Training wählen', url: '/select-training', icon: 'bulb' },
   ];
   currentUser: User;
 
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.url.toLowerCase() === '/' + path.toLowerCase());
+      this.selectedIndex = this.navPages.findIndex(page => page.url.toLowerCase() === '/' + path.toLowerCase());
     }
   }
 

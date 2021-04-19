@@ -24,8 +24,13 @@ ion-menu.md .menu-body {
   background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
 
+ion-menu .menu-wrapper {
+  box-shadow: var(--md-shadow-2dp);
+}
+
 ion-menu.md ion-list {
   padding: 20px 0;
+  box-shadow: var(--md-shadow-0dp);
 }
 
 ion-menu.md ion-note {
@@ -99,4 +104,5 @@ ion-menu ion-img {
     text-decoration: underline;
     font-weight: bold;
   }
+  padding-bottom: 32px;
 }

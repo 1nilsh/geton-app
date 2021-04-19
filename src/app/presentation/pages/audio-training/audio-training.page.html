@@ -20,6 +20,12 @@
     </ion-item>
   </ion-list>
 
+  <div class="ion-padding" *ngIf="!!selectedTraining && selectedTraining.enabledFeatures.audio.lessons.length === 0">
+    <ion-text color="medium">
+      <h2>Es sind noch keine Audios für {{selectedTraining.name}} freigeschaltet.</h2>
+    </ion-text>
+  </div>
+
   <ion-list *ngIf="!!selectedTraining">
     <app-audio-list-item *ngFor="let audio of selectedTraining.enabledFeatures.audio.lessons" [audio]="audio"
                          (click)="openPlayer(audio)"></app-audio-list-item>

@@ -2,18 +2,21 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" *ngIf="currentUser">
       <ion-content>
-        <div class="menu-header">
-          <ion-img src="assets/c4c-logo.png"></ion-img>
-        </div>
-        <div class="menu-body">
-          <ion-list id="nav-list">
-            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-list>
+        <div class="menu-wrapper">
+          <div class="menu-header">
+            <ion-img src="assets/c4c-logo.png"></ion-img>
+          </div>
+          <div class="menu-body">
+            <ion-list id="nav-list">
+              <ion-menu-toggle auto-hide="false" *ngFor="let p of navPages">
+                <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+                          routerLinkActive="selected">
+                  <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                  <ion-label>{{ p.title }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </div>
         </div>
       </ion-content>
       <div class="ion-text-center ion-padding imprint-link">

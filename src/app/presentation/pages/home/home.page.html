@@ -14,7 +14,7 @@
       <ion-col>
         <div *ngIf="currentTraining$ | async">
           <h3>Nächste Aktionen...</h3>
-          <ion-button *ngIf="(currentTraining$ | async).enabledFeatures.audio" routerLink="/audio-training">Audio</ion-button>
+          <ion-button *ngIf="(currentTraining$ | async).enabledFeatures.audio" routerLink="/audio-training" expand="block">Audio</ion-button>
         </div>
       </ion-col>
     </ion-row>
