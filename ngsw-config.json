@@ -33,8 +33,9 @@
     {
       "name": "remote-resources",
       "cacheConfig": {
-        "maxSize": 100,
-        "maxAge": "30d"
+        "maxSize": 200,
+        "maxAge": "7d",
+        "strategy": "performance"
       },
       "urls": [
         "https://**/*.mp3"

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -14,6 +14,10 @@ import { JwtInterceptorService } from './applicationlogic/auth/services/jwt-inte
 import { SyncService } from './applicationlogic/sync/services/sync.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '@environment/environment';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +43,7 @@ import { environment } from '@environment/environment';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+    { provide: LOCALE_ID, useValue: 'de-DE'}
   ],
   bootstrap: [AppComponent],
 })

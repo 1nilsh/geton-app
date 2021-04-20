@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   public navPages = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Training wählen', url: '/select-training', icon: 'bulb' },
+    { title: 'Mein Account', url: '/my-account', icon: 'person-circle' },
   ];
   currentUser: User;
 

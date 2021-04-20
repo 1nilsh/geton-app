@@ -29,13 +29,17 @@ export class SyncService {
 
     await this.trainingStorageService.saveTrainingsToStorage(allTrainings);
 
-    this.appStateStorageService.updateState('lastSync', Date.now());
+    await this.appStateStorageService.updateState('lastSync', Date.now());
   }
 
   public async isSyncNecessary(): Promise<boolean> {
     const lastSync = await this.appStateStorageService.getStateForKey('lastSync');
     const now = Date.now();
     return (now - lastSync) > (1000 * 60 * 30) || !lastSync;
+  }
+
+  public async getLastSyncTimestamp(): Promise<number> {
+    return await this.appStateStorageService.getStateForKey('lastSync');
   }
 
   private async addAudioDataToTraining(training: Training): Promise<Training> {

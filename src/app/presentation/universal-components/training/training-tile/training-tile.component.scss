@@ -1,6 +1,7 @@
 .tile-selected {
   --background: var(--ion-color-light);
   box-shadow: var(--md-shadow-12dp);
+  border: 2px solid var(--ion-color-primary);
 
   ion-img::after {
     display: inline-block;

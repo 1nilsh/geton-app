@@ -1,0 +1,28 @@
+<app-titlebar titletext="Mein Account"></app-titlebar>
+
+<ion-content>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="assets/images/avatar.svg">
+    </ion-avatar>
+    <ion-label>
+      <h3>{{(currentUser$ | async)?.displayname}}</h3>
+      <p>{{(currentUser$ | async)?.email}}</p>
+    </ion-label>
+    <ion-button slot="end" fill="clear" size="large" (click)="handleClickLogout()">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <div class="ion-padding">
+    <h2>Letzte Synchronisierung</h2>
+    <p>{{(lastSync$ | async) | date:'short'}}</p>
+    <ion-button *ngIf="!syncIsInProgress" (click)="handleClickSync()">
+      Jetzt synchronisieren...
+    </ion-button>
+    <ion-button *ngIf="syncIsInProgress" disabled="true">
+      <ion-spinner name="dots" class="ion-margin-end"></ion-spinner>
+      synchronisiert...
+    </ion-button>
+  </div>
+</ion-content>

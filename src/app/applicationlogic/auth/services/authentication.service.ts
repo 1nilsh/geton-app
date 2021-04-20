@@ -41,12 +41,13 @@ export class AuthenticationService {
   }
 
   public getCurrentUser(): Observable<User> {
-    return this.currentUser$.pipe(filter(value => value !== null));
+    return this.currentUser$;
   }
 
-  public logout(): void {
-    Storage.remove({ key: 'user' });
+  public async logout(): Promise<void> {
+    await Storage.remove({ key: 'user' });
     this.messageSource.next(null);
+    // @Todo: Clear all data
   }
 
   private async loadUserFromStorage(): Promise<User> {

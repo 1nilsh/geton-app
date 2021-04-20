@@ -32,6 +32,11 @@ const routes: Routes = [
     loadChildren: () => import('./presentation/pages/audio-training/audio-training.module').then(m => m.AudioTrainingPageModule),
     canActivate: [AuthenticationGuard]
   },
+  {
+    path: 'my-account',
+    loadChildren: () => import('./presentation/pages/my-account/my-account.module').then( m => m.MyAccountPageModule),
+    canActivate: [AuthenticationGuard]
+  },
 ];
 
 @NgModule({
