@@ -16,6 +16,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '@environment/environment';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { filter } from 'rxjs/operators';
 
 registerLocaleData(localeDe);
 
@@ -49,7 +50,7 @@ registerLocaleData(localeDe);
 })
 export class AppModule {
   constructor(private syncService: SyncService, private loadingController: LoadingController, private auth: AuthenticationService) {
-    this.auth.getCurrentUser().subscribe(user => {
+    this.auth.getCurrentUser().pipe(filter(value => value !== null)).subscribe(user => {
       this.doSync();
     });
   }
