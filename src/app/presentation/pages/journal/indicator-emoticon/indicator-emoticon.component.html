@@ -1,0 +1,8 @@
+<div [className]="'indicator-emoticon size-'+size">
+  <i *ngIf="!score" class="far fa-circle  feeling-0"></i>
+  <i *ngIf="score == 1" class="far fa-tired feeling-1"></i>
+  <i *ngIf="score == 2" class="far fa-frown feeling-2"></i>
+  <i *ngIf="score == 3" class="far fa-meh feeling-3"></i>
+  <i *ngIf="score == 4" class="far fa-smile feeling-4"></i>
+  <i *ngIf="score == 5" class="far fa-grin-beam feeling-5"></i>
+</div>

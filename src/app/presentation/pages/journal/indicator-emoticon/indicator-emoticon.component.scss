@@ -1,0 +1,25 @@
+.indicator-emoticon {
+  .feeling-0 {
+    color: var(--ion-color-light-shade);
+  }
+
+  .feeling-1, .feeling-2 {
+    color: var(--ion-color-danger);
+  }
+
+  .feeling-3 {
+    color: var(--ion-color-warning);
+  }
+
+  .feeling-4, .feeling-5 {
+    color: var(--ion-color-success);
+  }
+}
+
+.size-large {
+  font-size: 72px;
+}
+
+.size-small {
+  font-size: 32px;
+}

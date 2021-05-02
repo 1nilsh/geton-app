@@ -1,0 +1,18 @@
+<app-titlebar titletext="Tagebuch">
+  <ion-button (click)="handleClickAddEntry()" *ngIf="canAddEntry"><ion-icon name="add-circle"></ion-icon></ion-button>
+</app-titlebar>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let entry of journalEntries">
+      <ion-avatar slot="start">
+        <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{entry.date | date}}</h2>
+        <p *ngIf="entry.text">{{entry.text}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

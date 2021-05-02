@@ -1,0 +1,24 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { JournalPageRoutingModule } from './journal-routing.module';
+
+import { JournalPage } from './journal.page';
+import { TitlebarModule } from '@app/presentation/universal-components/titlebar/titlebar.module';
+import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entry-modal/add-entry-modal.component';
+import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indicator-emoticon/indicator-emoticon.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    JournalPageRoutingModule,
+    TitlebarModule
+  ],
+  declarations: [JournalPage, AddEntryModalComponent, IndicatorEmoticonComponent]
+})
+export class JournalPageModule {}
