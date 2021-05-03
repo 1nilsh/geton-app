@@ -7,7 +7,9 @@
 
     <ion-buttons slot="end">
       <!-- Custom buttons am Ende -->
-      <ng-content></ng-content>
+      <ng-content select="ion-button"></ng-content>
     </ion-buttons>
   </ion-toolbar>
+
+  <ng-content select="ion-toolbar"></ng-content>
 </ion-header>

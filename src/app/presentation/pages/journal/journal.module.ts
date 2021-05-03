@@ -10,6 +10,7 @@ import { JournalPage } from './journal.page';
 import { TitlebarModule } from '@app/presentation/universal-components/titlebar/titlebar.module';
 import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entry-modal/add-entry-modal.component';
 import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indicator-emoticon/indicator-emoticon.component';
+import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,8 @@ import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indi
     FormsModule,
     IonicModule,
     JournalPageRoutingModule,
-    TitlebarModule
+    TitlebarModule,
   ],
-  declarations: [JournalPage, AddEntryModalComponent, IndicatorEmoticonComponent]
+  declarations: [JournalPage, AddEntryModalComponent, IndicatorEmoticonComponent, ChartComponent]
 })
 export class JournalPageModule {}

@@ -1,10 +1,23 @@
 <app-titlebar titletext="Tagebuch">
-  <ion-button (click)="handleClickAddEntry()" *ngIf="canAddEntry"><ion-icon name="add-circle"></ion-icon></ion-button>
+  <ion-button (click)="handleClickAddEntry()" *ngIf="canAddEntry">
+    <ion-icon name="add-circle"></ion-icon>
+  </ion-button>
+  <ion-toolbar>
+    <ion-segment value="all" color="light" #segment>
+      <ion-segment-button value="all" layout="icon-start">
+        <ion-icon name="book"></ion-icon>
+        <ion-label>Einträge</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="stats" layout="icon-start">
+        <ion-icon name="stats-chart"></ion-icon>
+        <ion-label>Statistik</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </app-titlebar>
 
 <ion-content>
-
-  <ion-list>
+  <ion-list *ngIf="segment.value === 'all'">
     <ion-item *ngFor="let entry of journalEntries">
       <ion-avatar slot="start">
         <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
@@ -15,4 +28,7 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <app-chart [journalEntries]="journalEntries" title="Wohlbefinden in der letzten Woche" *ngIf="segment.value === 'stats'"></app-chart>
+
 </ion-content>
