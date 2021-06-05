@@ -6,6 +6,7 @@ import { User } from '@app/data/models/user';
 import { LoginError } from '@app/applicationlogic/auth/helper-models/login-error';
 import { ModalController, ToastController } from '@ionic/angular';
 import { ImprintPage } from '../imprint/imprint.page';
+import { InstallHelpComponent } from '@app/presentation/pages/login/install-help/install-help.component';
 
 @Component({
   selector: 'app-login',
@@ -55,7 +56,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async openImprintModal() {
+  async openImprintModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: ImprintPage,
     });
@@ -71,5 +72,12 @@ export class LoginPage implements OnInit {
     }).then(toast => {
       toast.present();
     });
+  }
+
+  async openInstallHelpModal(): Promise<void> {
+    const modal = await this.modalController.create({
+      component: InstallHelpComponent,
+    });
+    return await modal.present();
   }
 }
