@@ -12,7 +12,7 @@ import { JournalService } from '@app/applicationlogic/journal/journal.service';
 export class JournalPage implements OnInit {
 
   journalEntries: JournalEntry[] = [];
-  canAddEntry = false;
+  canAddEntry = true;
 
   constructor(private modalController: ModalController, private journalService: JournalService) {
   }
@@ -20,7 +20,6 @@ export class JournalPage implements OnInit {
   ngOnInit() {
     this.journalService.getAllJournalEntriesForTrainingId(1).then(entries => {
       this.journalEntries = entries;
-      this.canAddEntry = entries.length === 0 ? true : !this.isSameDay(entries[0].date, new Date());
     });
   }
 
@@ -31,6 +30,7 @@ export class JournalPage implements OnInit {
     });
     modal.onDidDismiss().then(event => {
       const newEntry = {
+        training: 24,
         date: new Date(),
         score: event.data.wellbeing,
         text: event.data.enteredText
@@ -43,7 +43,6 @@ export class JournalPage implements OnInit {
   }
 
   private isSameDay(date1: Date, date2: Date): boolean {
-    console.log();
     const dateString1 = date1.toLocaleDateString();
     const dateString2 = date2.toLocaleDateString();
 

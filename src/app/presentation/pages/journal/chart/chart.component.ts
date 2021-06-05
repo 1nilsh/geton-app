@@ -29,10 +29,13 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const labels = [];
     const data = [];
 
-    this.journalEntries.forEach(e => {
-      labels.push(e.date.getDate() + '.' + e.date.getMonth() + '.');
-      data.push(e.score);
-    });
+    for (let i = 0; i < 7; i++) {
+      labels.push(this.journalEntries[i].date.getDate() + '.' + (this.journalEntries[i].date.getMonth() + 1) + '.');
+      data.push(this.journalEntries[i].score);
+    }
+
+    labels.reverse();
+    data.reverse();
 
     Chart.register(...registerables);
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {

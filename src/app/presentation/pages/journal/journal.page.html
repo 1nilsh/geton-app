@@ -1,5 +1,5 @@
 <app-titlebar titletext="Tagebuch">
-  <ion-button (click)="handleClickAddEntry()" *ngIf="canAddEntry">
+  <ion-button (click)="handleClickAddEntry(); segment.value='all'" *ngIf="canAddEntry">
     <ion-icon name="add-circle"></ion-icon>
   </ion-button>
   <ion-toolbar>

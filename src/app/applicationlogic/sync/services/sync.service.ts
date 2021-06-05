@@ -4,6 +4,8 @@ import { AudioDataService } from '@app/data/audio-data/services/audio-data.servi
 import { TrainingStorageService } from '@app/data/training-data/services/training-storage.service';
 import { Training } from '@app/data/models/training';
 import { AppStateStorageService } from '@app/data/app-state/services/app-state-storage.service';
+import { JournalDataService } from '@app/data/journal/journal-data.service';
+import { JournalStorageService } from '@app/data/journal/journal-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,17 @@ import { AppStateStorageService } from '@app/data/app-state/services/app-state-s
 export class SyncService {
 
   constructor(
-    private userTrainingDataService: TrainingDataService,
+    private trainingDataService: TrainingDataService,
     private audioDataService: AudioDataService,
     private trainingStorageService: TrainingStorageService,
-    private appStateStorageService: AppStateStorageService
+    private appStateStorageService: AppStateStorageService,
+    private journalDataService: JournalDataService,
+    private journalStorageService: JournalStorageService
   ) {
   }
 
   public async fullSync(): Promise<void> {
-    const allTrainings = await this.userTrainingDataService.getAllUserTrainings().toPromise();
+    const allTrainings = await this.trainingDataService.getAllUserTrainings().toPromise();
 
     for (let i = 0; i < allTrainings.length; i++) {
       if (allTrainings[i].enabledFeatures.audio) {
@@ -28,6 +32,10 @@ export class SyncService {
     }
 
     await this.trainingStorageService.saveTrainingsToStorage(allTrainings);
+
+    let journalEntries = await this.journalStorageService.loadEntriesFromStorage();
+    journalEntries = await this.journalDataService.updateJournalEntries(journalEntries);
+    await this.journalStorageService.saveEntriesToStorage(journalEntries);
 
     await this.appStateStorageService.updateState('lastSync', Date.now());
   }
