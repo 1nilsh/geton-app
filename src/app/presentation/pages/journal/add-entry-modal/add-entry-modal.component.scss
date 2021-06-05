@@ -1,0 +1,10 @@
+.free-input-wrap ion-textarea{
+  border-radius: 4px;
+  background: white;
+  border: 1px solid var(--ion-color-medium);
+  min-height: 65px;
+}
+
+.free-input-wrap ion-textarea:focus, .free-input-wrap ion-textarea:focus-within {
+  border: 1px solid var(--ion-color-primary);
+}

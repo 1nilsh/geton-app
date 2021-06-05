@@ -12,9 +12,10 @@
         <app-training-placeholder *ngIf="!(currentTraining$ | async)"></app-training-placeholder>
       </ion-col>
       <ion-col>
-        <div *ngIf="currentTraining$ | async">
+        <div *ngIf="currentTraining$ | async" class="features">
           <h3>Nächste Aktionen...</h3>
           <ion-button *ngIf="(currentTraining$ | async).enabledFeatures.audio" routerLink="/audio-training" expand="block">Audio</ion-button>
+          <ion-button routerLink="/journal" expand="block">Tagebuch</ion-button>
         </div>
       </ion-col>
     </ion-row>

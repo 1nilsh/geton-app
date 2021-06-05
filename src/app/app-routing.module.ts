@@ -37,6 +37,11 @@ const routes: Routes = [
     loadChildren: () => import('./presentation/pages/my-account/my-account.module').then( m => m.MyAccountPageModule),
     canActivate: [AuthenticationGuard]
   },
+  {
+    path: 'journal',
+    loadChildren: () => import('./presentation/pages/journal/journal.module').then( m => m.JournalPageModule),
+    canActivate: [AuthenticationGuard]
+  },
 ];
 
 @NgModule({

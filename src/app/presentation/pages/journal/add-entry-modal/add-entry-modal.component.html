@@ -1,0 +1,40 @@
+<app-titlebar titletext="Neuer Eintrag" [showMenuButton]="false">
+  <ion-button (click)="dismissSelf()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+</app-titlebar>
+
+<ion-content>
+  <div class="ion-padding">
+    <h2>Wie geht es Ihnen heute?</h2>
+  </div>
+
+  <div class="ion-padding ion-text-center">
+    <app-indicator-emoticon [score]="wellbeingScale" size="large"></app-indicator-emoticon>
+
+    <ion-range min="1" max="5" step="1" pin snaps color="primary" (ionChange)="handleRangeChange($event)">
+      <label slot="start">1</label>
+      <label slot="end">5</label>
+    </ion-range>
+  </div>
+
+  <div class="ion-padding free-input-wrap">
+    <form>
+      <ion-label>Freitexteingabe:</ion-label>
+      <ion-textarea
+        placeholder="..."
+        spellcheck
+        rows="4"
+        wrap="soft"
+        inputmode="text"
+        (ionChange)="handleTextareaChange($event)"
+      >
+      </ion-textarea>
+    </form>
+  </div>
+
+  <div class="ion-padding">
+    <ion-button *ngIf="!!wellbeingScale" expand="block" (click)="handleClickSave()">Speichern</ion-button>
+    <ion-button *ngIf="!wellbeingScale" disabled expand="block">Speichern</ion-button>
+  </div>
+</ion-content>
