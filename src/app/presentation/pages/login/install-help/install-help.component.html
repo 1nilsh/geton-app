@@ -1,0 +1,49 @@
+<app-titlebar titletext="Installieren" [showMenuButton]="false">
+  <ion-button (click)="dismissSelf()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+
+  <ion-toolbar>
+    <ion-segment value="ios" color="light" #segment>
+      <ion-segment-button value="ios" layout="icon-start">
+        <ion-icon name="logo-apple"></ion-icon>
+        <ion-label>iPhone</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="android" layout="icon-start">
+        <ion-icon name="logo-android"></ion-icon>
+        <ion-label>Android</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</app-titlebar>
+
+<ion-content>
+  <ion-card *ngIf="segment.value == 'ios'">
+    <ion-card-content>
+      <ion-text color="dark">
+        <h2>Klicken Sie in der Leiste am unteren Bildschirmrand auf
+          <ion-icon name="share-outline"></ion-icon>
+          und wählen Sie aus der Liste „Zum Home-Bildschirm“.
+        </h2>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="segment.value == 'android'">
+    <ion-card-content>
+      <ion-text color="dark">
+        <h2>Klicken Sie auf das Menü
+          <ion-icon name="menu"></ion-icon>
+          und wählen Sie aus der Liste „Zum Startbildschirm hinzufügen“.
+        </h2>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<div class="ios-arrow-indicator" *ngIf="segment.value == 'ios'">
+  <ion-icon name="arrow-down"></ion-icon>
+</div>
+<div class="android-arrow-indicator" *ngIf="segment.value == 'android'">
+  <ion-icon name="arrow-up"></ion-icon>
+</div>
