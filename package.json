@@ -1,8 +1,8 @@
 {
-  "name": "cosa-app",
+  "name": "geton-app",
   "version": "0.1.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Nils Hodys",
+  "homepage": "https://github.com/1nilsh",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

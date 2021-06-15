@@ -1,6 +1,6 @@
 {
-  "appId": "de.leuphana.cosa-app",
-  "appName": "cosa-app",
+  "appId": "de.leuphana.geton-app",
+  "appName": "geton-app",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
