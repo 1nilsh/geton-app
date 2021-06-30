@@ -11,16 +11,23 @@ export class DownloadService {
   }
 
   public async downloadBlob(url: string): Promise<BlobDto> {
-    const responseData = await this.http.get(url, {
-        responseType: 'blob',
-        headers: { skip: 'true' }
-      }
-    ).toPromise();
+    try {
+      const responseData = await this.http.get(url, {
+          responseType: 'blob',
+          headers: { skip: 'true' }
+        }
+      ).toPromise();
 
-    return {
-      filename: this.filenameFromUrl(url),
-      blob: await this.blob2base(responseData)
-    };
+      return {
+        filename: this.filenameFromUrl(url),
+        blob: await this.blob2base(responseData)
+      };
+    } catch (e) {
+      return {
+        filename: '',
+        blob: null
+      }
+    }
   }
 
   private filenameFromUrl(url: string): string {
