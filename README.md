@@ -25,6 +25,14 @@ npm run lint
 ionic generate
 ```
 
+### Build for Staging/Production environments
+```
+./node_modules/@ionic/cli/bin/ionic build --configuration=staging
+```
+```
+./node_modules/@ionic/cli/bin/ionic build --configuration=production
+```
+
 ## Architektur
 
 Grundsätzlich handelt es sich um eine Ionic+Angular App. Deshalb bleibt der obere Teil ("Project Setup") unverändert gültig.
