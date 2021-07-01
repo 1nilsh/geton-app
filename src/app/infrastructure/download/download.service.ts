@@ -26,7 +26,7 @@ export class DownloadService {
       return {
         filename: '',
         blob: null
-      }
+      };
     }
   }
 
