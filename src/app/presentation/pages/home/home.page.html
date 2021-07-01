@@ -9,12 +9,16 @@
     <ion-row>
       <ion-col>
         <app-training-tile *ngIf="currentTraining$ | async" [training]="currentTraining$ | async"></app-training-tile>
-        <app-training-placeholder *ngIf="!(currentTraining$ | async)"></app-training-placeholder>
+        <app-training-placeholder
+          *ngIf="(currentTraining$ | async) === undefined || (currentTraining$ | async) === null">
+        </app-training-placeholder>
       </ion-col>
       <ion-col>
         <div *ngIf="currentTraining$ | async" class="features">
           <h3>Nächste Aktionen...</h3>
-          <ion-button *ngIf="(currentTraining$ | async).enabledFeatures.audio" routerLink="/audio-training" expand="block">Audio</ion-button>
+          <ion-button *ngIf="(currentTraining$ | async).enabledFeatures.audio" routerLink="/audio-training"
+                      expand="block">Audio
+          </ion-button>
           <ion-button routerLink="/journal" expand="block">Tagebuch</ion-button>
         </div>
       </ion-col>
