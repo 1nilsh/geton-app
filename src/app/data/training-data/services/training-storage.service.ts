@@ -13,6 +13,7 @@ export class TrainingStorageService {
   }
 
   async saveTrainingsToStorage(trainings: Training[]): Promise<void> {
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < trainings.length; i++) {
       if (trainings[i].image) {
         const image = await this.downloadService.downloadBlob(trainings[i].image);
