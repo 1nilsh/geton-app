@@ -1,0 +1,21 @@
+<app-titlebar titletext="Eintrag ansehen" [showMenuButton]="false">
+  <ion-button (click)="dismissSelf()">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+</app-titlebar>
+
+<ion-content>
+  <div class="ion-padding ion-text-center">
+    <app-indicator-emoticon [score]="entry.score" size="large"></app-indicator-emoticon>
+  </div>
+  <div class="ion-padding-horizontal">
+    <h2>Eintrag vom {{entry.date | date}}</h2>
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-text>
+        <p>{{entry.text}}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

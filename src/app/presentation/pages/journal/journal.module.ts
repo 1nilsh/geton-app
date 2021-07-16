@@ -11,6 +11,7 @@ import { TitlebarModule } from '@app/presentation/universal-components/titlebar/
 import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entry-modal/add-entry-modal.component';
 import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indicator-emoticon/indicator-emoticon.component';
 import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.component';
+import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.comp
     JournalPageRoutingModule,
     TitlebarModule,
   ],
-  declarations: [JournalPage, AddEntryModalComponent, IndicatorEmoticonComponent, ChartComponent]
+  declarations: [JournalPage, AddEntryModalComponent, ReviewEntryModalComponent, IndicatorEmoticonComponent, ChartComponent]
 })
 export class JournalPageModule {}

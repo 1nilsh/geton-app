@@ -18,7 +18,7 @@
 
 <ion-content>
   <ion-list *ngIf="segment.value === 'all'">
-    <ion-item *ngFor="let entry of journalEntries">
+    <ion-item *ngFor="let entry of journalEntries" (click)="handleClickOnEntry(entry)">
       <ion-avatar slot="start">
         <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
       </ion-avatar>
