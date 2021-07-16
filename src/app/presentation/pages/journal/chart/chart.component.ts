@@ -29,9 +29,31 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const labels = [];
     const data = [];
 
+    let journalEntryIndex = 0;
     for (let i = 0; i < 7; i++) {
-      labels.push(this.journalEntries[i].date.getDate() + '.' + (this.journalEntries[i].date.getMonth() + 1) + '.');
-      data.push(this.journalEntries[i].score);
+      const day = new Date(Date.now() - i * 864e5);
+      labels.push(day.getDate() + '.' + (day.getMonth() + 1) + '.');
+
+      if (this.journalEntries[journalEntryIndex] !== undefined) {
+        let scoreSum = 0;
+        let scoreCount = 0;
+        while (this.areDatesOnSameDay(this.journalEntries[journalEntryIndex].date, day)) {
+          scoreSum += this.journalEntries[journalEntryIndex].score;
+          scoreCount++;
+          journalEntryIndex++;
+        }
+
+        if (scoreCount > 0) {
+          data.push(scoreSum / scoreCount);
+        } else {
+          data.push(0);
+        }
+
+        scoreSum = 0;
+        scoreCount = 0;
+      } else {
+        data.push(0);
+      }
     }
 
     labels.reverse();
@@ -83,4 +105,17 @@ export class ChartComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private areDatesOnSameDay(date1: Date, date2: Date): boolean {
+    if (date1.getDate() !== date2.getDate()) {
+      return false;
+    }
+    if (date1.getMonth() !== date2.getMonth()) {
+      return false;
+    }
+    if (date1.getFullYear() !== date2.getFullYear()) {
+      return false;
+    }
+
+    return true;
+  }
 }
