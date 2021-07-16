@@ -12,6 +12,7 @@ import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entr
 import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indicator-emoticon/indicator-emoticon.component';
 import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.component';
 import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
+import { TextformattingModule } from '@app/infrastructure/textformatting/textformatting.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/revie
     IonicModule,
     JournalPageRoutingModule,
     TitlebarModule,
+    TextformattingModule,
   ],
   declarations: [JournalPage, AddEntryModalComponent, ReviewEntryModalComponent, IndicatorEmoticonComponent, ChartComponent]
 })
