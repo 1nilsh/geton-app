@@ -40,11 +40,4 @@ export class JournalPage implements OnInit {
     });
     await modal.present();
   }
-
-  private isSameDay(date1: Date, date2: Date): boolean {
-    const dateString1 = date1.toLocaleDateString();
-    const dateString2 = date2.toLocaleDateString();
-
-    return dateString1 === dateString2;
-  }
 }
