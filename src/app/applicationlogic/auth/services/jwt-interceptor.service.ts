@@ -26,7 +26,7 @@ export class JwtInterceptorService implements HttpInterceptor {
     }
 
     let newHeaders = req.headers;
-    if (this.currentUser && req.url !== 'http://192.168.33.10/wp-content/uploads/2021/04/Dankbarkeit.jpeg') {
+    if (this.currentUser && !req.url.includes('wp-content/uploads')) {
       newHeaders = newHeaders.append('Authorization', 'Bearer ' + this.currentUser.jwt);
     }
     const authReq = req.clone({ headers: newHeaders });
