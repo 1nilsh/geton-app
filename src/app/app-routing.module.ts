@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './applicationlogic/auth/guard/authentication.guard';
-import { ImprintPage } from './presentation/pages/imprint/imprint.page';
 
 const routes: Routes = [
   {
