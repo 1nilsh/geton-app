@@ -35,26 +35,25 @@ export class ChartComponent implements OnInit, AfterViewInit {
       const day = new Date(Date.now() - i * 864e5);
       labels.push(day.getDate() + '.' + (day.getMonth() + 1) + '.');
 
-      if (this.journalEntries[journalEntryIndex] !== undefined) {
-        let scoreSum = 0;
-        let scoreCount = 0;
-        while (this.areDatesOnSameDay(this.journalEntries[journalEntryIndex].date, day)) {
-          scoreSum += this.journalEntries[journalEntryIndex][this.score];
-          scoreCount++;
-          journalEntryIndex++;
-        }
+      let scoreSum = 0;
+      let scoreCount = 0;
+      while (
+        this.journalEntries[journalEntryIndex] !== undefined
+        && this.areDatesOnSameDay(this.journalEntries[journalEntryIndex].date, day)
+        ) {
+        scoreSum += this.journalEntries[journalEntryIndex][this.score];
+        scoreCount++;
+        journalEntryIndex++;
+      }
 
-        if (scoreCount > 0) {
-          data.push(scoreSum / scoreCount);
-        } else {
-          data.push(0);
-        }
-
-        scoreSum = 0;
-        scoreCount = 0;
+      if (scoreCount > 0) {
+        data.push(scoreSum / scoreCount);
       } else {
         data.push(0);
       }
+
+      scoreSum = 0;
+      scoreCount = 0;
     }
 
     labels.reverse();
