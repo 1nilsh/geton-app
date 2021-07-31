@@ -17,11 +17,11 @@
 </app-titlebar>
 
 <ion-content>
-  <ion-list *ngIf="segment.value === 'all'">
+  <ion-list *ngIf="segment.value === 'all' && journalEntries.length > 0">
     <ion-item-sliding *ngFor="let entry of journalEntries">
       <ion-item (click)="handleClickOnEntry(entry)">
         <ion-avatar slot="start">
-          <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
+          <app-indicator-emoticon [score]="calcAvgScore(entry)" size="small"></app-indicator-emoticon>
         </ion-avatar>
         <ion-label>
           <h2>{{entry.date | date}}</h2>
@@ -37,7 +37,26 @@
     </ion-item-sliding>
   </ion-list>
 
-  <app-chart [journalEntries]="journalEntries" title="Wohlbefinden in der letzten Woche"
+  <div class="ion-padding" *ngIf="segment.value === 'all' && journalEntries.length === 0">
+    <ion-text>
+      Hier können Sie Momente für sich festhalten, in denen Sie achtsam mit sich umgegangen sind und / oder in denen Sie gut zu sich waren.
+      Dies können z.B. Augenblicke sein, in denen… <br/><br/>
+      …Sie gelassen blieben, obwohl etwas nicht so gelaufen ist, wie erwünscht.<br/><br/>
+      …Sie sich im Alltag Ihre eigenen persönlichen Werte und Bedürfnisse bewusst machten, anstatt einzig auf die Erwartungen von außen zu achten und zu „funktionieren“.<br/><br/>
+      …Sie sich kleinere, umsetzbare Ziele setzten, statt die Ansprüche an sich selbst sehr hoch zu stecken.<br/><br/>
+      …Sie sich auch Ihre Stärken vor Augen führten, anstatt über Ihre Schwächen zu grübeln.<br/><br/>
+      …Sie etwas Neues ausprobiert haben, statt sich der Angst hinzugeben, dass es Ihnen nicht so gut gelingen könnte.<br/><br/>
+      Oder aber ganz allgemein all jene Alltagsmomente, in denen Sie das Gefühl hatten, sich etwas Gutes zu tun und sich Zeit für sich zu nehmen.
+    </ion-text>
+  </div>
+
+  <app-chart [journalEntries]="journalEntries" score="scoreWohlfuehlen" title="Wohlbefinden in der letzten Woche"
+             *ngIf="segment.value === 'stats'"></app-chart>
+
+  <app-chart [journalEntries]="journalEntries" score="scoreWohlwollen" title="Wohlwollen in der letzten Woche"
+             *ngIf="segment.value === 'stats'"></app-chart>
+
+  <app-chart [journalEntries]="journalEntries" score="scoreAchtsamkeit" title="Achtsamkeit in der letzten Woche"
              *ngIf="segment.value === 'stats'"></app-chart>
 
 </ion-content>

@@ -33,7 +33,9 @@ export class JournalPage implements OnInit {
       const newEntry = {
         training: 24,
         date: new Date(),
-        score: event.data.wellbeing,
+        scoreWohlfuehlen: event.data.scaleWohlfuehlen,
+        scoreWohlwollen: event.data.scaleWohlwollen,
+        scoreAchtsamkeit: event.data.scaleAchtsamkeit,
         text: event.data.enteredText
       };
       this.journalService.addNewEntry(newEntry);
@@ -57,5 +59,9 @@ export class JournalPage implements OnInit {
     const i = this.journalEntries.indexOf(entry);
     await this.journalService.deleteEntry(entry);
     this.journalEntries.splice(i, 1);
+  }
+
+  calcAvgScore(entry: JournalEntry): number {
+    return Math.round((entry.scoreWohlfuehlen + entry.scoreWohlwollen + entry.scoreAchtsamkeit) / 3);
   }
 }

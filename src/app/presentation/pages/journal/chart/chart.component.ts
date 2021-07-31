@@ -12,6 +12,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   @Input() journalEntries: JournalEntry[];
   @Input() title: string;
+  @Input() score: string;
 
   lineChart: any;
 
@@ -38,7 +39,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         let scoreSum = 0;
         let scoreCount = 0;
         while (this.areDatesOnSameDay(this.journalEntries[journalEntryIndex].date, day)) {
-          scoreSum += this.journalEntries[journalEntryIndex].score;
+          scoreSum += this.journalEntries[journalEntryIndex][this.score];
           scoreCount++;
           journalEntryIndex++;
         }

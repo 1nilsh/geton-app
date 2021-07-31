@@ -5,18 +5,49 @@
 </app-titlebar>
 
 <ion-content>
-  <div class="ion-padding">
-    <h2>Wie geht es Ihnen heute?</h2>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Wie wohl haben Sie sich heute alles in allem gefühlt?</ion-card-title>
+    </ion-card-header>
+    <div class="ion-text-center">
+      <app-indicator-emoticon [score]="scaleWohlfuehlen" size="small"></app-indicator-emoticon>
+      <app-indicator-text [score]="scaleWohlfuehlen" type="wohlfuehlen"></app-indicator-text>
+      <ion-range min="1" max="5" step="1" pin snaps color="primary"
+                 (ionChange)="scaleWohlfuehlen = $event.target.value">
+        <label slot="start">1</label>
+        <label slot="end">5</label>
+      </ion-range>
+    </div>
+  </ion-card>
 
-  <div class="ion-padding ion-text-center">
-    <app-indicator-emoticon [score]="wellbeingScale" size="large"></app-indicator-emoticon>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Wie wohlwollend sind Sie heute mit sich umgegangen?</ion-card-title>
+    </ion-card-header>
+    <div class="ion-text-center">
+      <app-indicator-emoticon [score]="scaleWohlwollen" size="small"></app-indicator-emoticon>
+      <app-indicator-text [score]="scaleWohlwollen" type="wohlwollen"></app-indicator-text>
+      <ion-range min="1" max="5" step="1" pin snaps color="primary"
+                 (ionChange)="scaleWohlwollen = $event.target.value">
+        <label slot="start">1</label>
+        <label slot="end">5</label>
+      </ion-range>
+    </div>
+  </ion-card>
 
-    <ion-range min="1" max="5" step="1" pin snaps color="primary" (ionChange)="handleRangeChange($event)">
-      <label slot="start">1</label>
-      <label slot="end">5</label>
-    </ion-range>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Wie achtsam waren Sie heute?</ion-card-title>
+    </ion-card-header>
+    <div class="ion-text-center">
+      <app-indicator-emoticon [score]="scaleAchtsamkeit" size="small"></app-indicator-emoticon>
+      <app-indicator-text [score]="scaleAchtsamkeit" type="achtsamkeit"></app-indicator-text>
+      <ion-range min="1" max="5" step="1" pin snaps color="primary" (ionChange)="scaleAchtsamkeit = $event.target.value">
+        <label slot="start">1</label>
+        <label slot="end">5</label>
+      </ion-range>
+    </div>
+  </ion-card>
 
   <div class="ion-padding free-input-wrap">
     <form>
@@ -34,7 +65,7 @@
   </div>
 
   <div class="ion-padding">
-    <ion-button *ngIf="!!wellbeingScale" expand="block" (click)="handleClickSave()">Speichern</ion-button>
-    <ion-button *ngIf="!wellbeingScale" disabled expand="block">Speichern</ion-button>
+    <ion-button *ngIf="!!scaleWohlfuehlen" expand="block" (click)="handleClickSave()">Speichern</ion-button>
+    <ion-button *ngIf="!scaleWohlfuehlen" disabled expand="block">Speichern</ion-button>
   </div>
 </ion-content>

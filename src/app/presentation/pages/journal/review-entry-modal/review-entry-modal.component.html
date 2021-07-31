@@ -6,7 +6,20 @@
 
 <ion-content>
   <div class="ion-padding ion-text-center">
-    <app-indicator-emoticon [score]="entry.score" size="large"></app-indicator-emoticon>
+    <ion-row>
+      <ion-col>
+        <app-indicator-emoticon [score]="entry.scoreWohlfuehlen" size="large"></app-indicator-emoticon>
+        Wohlbefinden
+      </ion-col>
+      <ion-col>
+        <app-indicator-emoticon [score]="entry.scoreWohlwollen" size="large"></app-indicator-emoticon>
+        Wohlwollen
+      </ion-col>
+      <ion-col>
+        <app-indicator-emoticon [score]="entry.scoreAchtsamkeit" size="large"></app-indicator-emoticon>
+        Achtsamkeit
+      </ion-col>
+    </ion-row>
   </div>
   <div class="ion-padding-horizontal">
     <h2>Eintrag vom {{entry.date | date}}</h2>
