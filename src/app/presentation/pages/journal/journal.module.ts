@@ -24,6 +24,14 @@ import { IndicatorTextComponent } from '@app/presentation/pages/journal/indicato
     TitlebarModule,
     TextformattingModule,
   ],
-  declarations: [JournalPage, AddEntryModalComponent, ReviewEntryModalComponent, IndicatorEmoticonComponent, ChartComponent, IndicatorTextComponent]
+  declarations: [
+    JournalPage,
+    AddEntryModalComponent,
+    ReviewEntryModalComponent,
+    IndicatorEmoticonComponent,
+    ChartComponent,
+    IndicatorTextComponent
+  ]
 })
-export class JournalPageModule {}
+export class JournalPageModule {
+}
