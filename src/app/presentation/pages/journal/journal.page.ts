@@ -52,4 +52,10 @@ export class JournalPage implements OnInit {
     });
     await modal.present();
   }
+
+  async handleClickDelete(entry: JournalEntry) {
+    const i = this.journalEntries.indexOf(entry);
+    await this.journalService.deleteEntry(entry);
+    this.journalEntries.splice(i, 1);
+  }
 }

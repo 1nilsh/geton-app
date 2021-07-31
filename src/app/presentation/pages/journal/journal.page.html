@@ -18,17 +18,26 @@
 
 <ion-content>
   <ion-list *ngIf="segment.value === 'all'">
-    <ion-item *ngFor="let entry of journalEntries" (click)="handleClickOnEntry(entry)">
-      <ion-avatar slot="start">
-        <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
-      </ion-avatar>
-      <ion-label>
-        <h2>{{entry.date | date}}</h2>
-        <p *ngIf="entry.text">{{entry.text}}</p>
-      </ion-label>
-    </ion-item>
+    <ion-item-sliding *ngFor="let entry of journalEntries">
+      <ion-item (click)="handleClickOnEntry(entry)">
+        <ion-avatar slot="start">
+          <app-indicator-emoticon [score]="entry.score" size="small"></app-indicator-emoticon>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{entry.date | date}}</h2>
+          <p *ngIf="entry.text">{{entry.text}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="handleClickDelete(entry)">
+          Löschen
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
-  <app-chart [journalEntries]="journalEntries" title="Wohlbefinden in der letzten Woche" *ngIf="segment.value === 'stats'"></app-chart>
+  <app-chart [journalEntries]="journalEntries" title="Wohlbefinden in der letzten Woche"
+             *ngIf="segment.value === 'stats'"></app-chart>
 
 </ion-content>
