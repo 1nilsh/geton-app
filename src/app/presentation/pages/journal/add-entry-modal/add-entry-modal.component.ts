@@ -36,4 +36,8 @@ export class AddEntryModalComponent implements OnInit {
       enteredText: this.enteredText
     });
   }
+
+  hasEnteredScores() {
+    return !!this.scaleWohlfuehlen && !!this.scaleWohlwollen && !!this.scaleAchtsamkeit;
+  }
 }

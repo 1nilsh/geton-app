@@ -70,6 +70,8 @@ export class ChartComponent implements OnInit, AfterViewInit {
         },
         scales: {
           y: {
+            suggestedMin: 1,
+            max: 5,
             ticks: {
               stepSize: 1,
               padding: 8

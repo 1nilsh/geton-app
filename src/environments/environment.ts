@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_base_url: 'http://192.168.33.10/?rest_route=/app'
+  api_base_url: 'https://coachstaging.geton-training.de/?rest_route=/app'
 };
 
 /*

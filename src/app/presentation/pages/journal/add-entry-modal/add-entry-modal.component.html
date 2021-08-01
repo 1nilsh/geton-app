@@ -65,7 +65,7 @@
   </div>
 
   <div class="ion-padding">
-    <ion-button *ngIf="!!scaleWohlfuehlen" expand="block" (click)="handleClickSave()">Speichern</ion-button>
-    <ion-button *ngIf="!scaleWohlfuehlen" disabled expand="block">Speichern</ion-button>
+    <ion-button *ngIf="hasEnteredScores()" expand="block" (click)="handleClickSave()">Speichern</ion-button>
+    <ion-button *ngIf="!hasEnteredScores()" disabled expand="block">Speichern</ion-button>
   </div>
 </ion-content>
