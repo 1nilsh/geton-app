@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { TrainingDataService } from '@app/data/training-data/services/training-data.service';
-import { AudioDataService } from '@app/data/audio-data/services/audio-data.service';
-import { TrainingStorageService } from '@app/data/training-data/services/training-storage.service';
-import { Training } from '@app/data/models/training';
-import { AppStateStorageService } from '@app/data/app-state/services/app-state-storage.service';
-import { JournalDataService } from '@app/data/journal/journal-data.service';
-import { JournalStorageService } from '@app/data/journal/journal-storage.service';
+import {Injectable} from '@angular/core';
+import {TrainingDataService} from '@app/data/training-data/services/training-data.service';
+import {AudioDataService} from '@app/data/audio-data/services/audio-data.service';
+import {TrainingStorageService} from '@app/data/training-data/services/training-storage.service';
+import {Training} from '@app/data/models/training';
+import {AppStateStorageService} from '@app/data/app-state/services/app-state-storage.service';
+import {JournalDataService} from '@app/data/journal/journal-data.service';
+import {JournalStorageService} from '@app/data/journal/journal-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,22 @@ export class SyncService {
   }
 
   public async fullSync(): Promise<void> {
-    const allTrainings = await this.trainingDataService.getAllUserTrainings().toPromise();
+    let allTrainings = [];
+    try {
+      allTrainings = await this.trainingDataService.getAllUserTrainings().toPromise();
+    } catch (e) {
+      console.error('Could not sync trainings.', e);
+      // TODO: Do not fail silently
+      return;
+    }
 
     for (let i = 0; i < allTrainings.length; i++) {
       if (allTrainings[i].enabledFeatures.audio) {
-        allTrainings[i] = await this.addAudioDataToTraining(allTrainings[i]);
+        try {
+          allTrainings[i] = await this.addAudioDataToTraining(allTrainings[i]);
+        } catch (e) {
+          console.error('Could not add audio data to Training', allTrainings[i]);
+        }
       }
     }
 
