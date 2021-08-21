@@ -1,41 +1,53 @@
 # GET.ON App
 
-## Project setup
-```
+## Projektsetup
+
+### Technische Voraussetzungen
+
+Es muss `Node.js` in der Version `^16.0` auf dem Entwicklerrechner global installiert sein.
+
+Außerdem muss der Node Package Manager `npm` in der Version `^7.19.0` installiert sein.
+
+Optional kann `ionic/cli` in der Version `^6.13.0` global installiert werden.
+Im Folgenden wird davon ausgegangen, dass dies der Fall ist.
+Wenn Ionic nicht global installiert ist, müssen alle `ionic` Aufrufe in dieser Dokumentation durch
+`./node_modules/@ionic/cli/bin/ionic` ersetzt werden.
+
+### Dependencies installieren
+
+Im Projektverzeichnis ausführen:
+```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+### Projekt für die Entwicklung kompilieren und mit hot-reload starten
+```bash
 ionic serve
 ```
 
-### Compiles and minifies for production
-```
-ionic build
-```
-
 ### Lints and fixes files
-```
+```bash
 npm run lint
 ```
 
 ### Generating features
-```
+```bash
 ionic generate
 ```
 
-### Build for Staging/Production environments
+### Build für Staging/Production environments
+```bash
+ionic build --configuration=staging
 ```
-./node_modules/@ionic/cli/bin/ionic build --configuration=staging
-```
-```
-./node_modules/@ionic/cli/bin/ionic build --configuration=production
+
+```bash
+ionic build --configuration=production
 ```
 
 ## Architektur
 
-Grundsätzlich handelt es sich um eine Ionic+Angular App. Deshalb bleibt der obere Teil ("Project Setup") unverändert gültig.
+Grundsätzlich handelt es sich um eine Ionic+Angular App. Deshalb bleibt der
+obere Teil ("Project Setup") unverändert gültig.
 Dokumentation unter https://ionicframework.com/docs/angular/overview
 
 Unter `src/app/` liegen `applicationlogic`, `data`, `infrastructure` und `presentation`.
@@ -53,4 +65,5 @@ Unter `src/theme/` liegen die Dateien
 Unter `src/environments/` liegen Konfigurationen für die Deployment-Environments.
 Das sind noch das standardmäßige environment für die lokale Entwicklung sowie environments für staging und production.
 
-Die zugehörigen Build-Konfigurationen werden in der `angular.json` unter dem Schlüssel `projects > app > architect > build > configurations` gesetzt.
+Die zugehörigen Build-Konfigurationen werden in der `angular.json` unter dem Schlüssel
+`projects > app > architect > build > configurations` gesetzt.
