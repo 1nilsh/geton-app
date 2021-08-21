@@ -13,6 +13,7 @@ import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indi
 import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.component';
 import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
 import { TextformattingModule } from '@app/infrastructure/textformatting/textformatting.module';
+import { IndicatorTextComponent } from '@app/presentation/pages/journal/indicator-text/indicator-text.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,14 @@ import { TextformattingModule } from '@app/infrastructure/textformatting/textfor
     TitlebarModule,
     TextformattingModule,
   ],
-  declarations: [JournalPage, AddEntryModalComponent, ReviewEntryModalComponent, IndicatorEmoticonComponent, ChartComponent]
+  declarations: [
+    JournalPage,
+    AddEntryModalComponent,
+    ReviewEntryModalComponent,
+    IndicatorEmoticonComponent,
+    ChartComponent,
+    IndicatorTextComponent
+  ]
 })
-export class JournalPageModule {}
+export class JournalPageModule {
+}

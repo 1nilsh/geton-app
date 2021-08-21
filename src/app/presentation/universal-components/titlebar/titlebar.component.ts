@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TitlebarComponent implements OnInit {
   @Input() titletext: string;
-  @Input() showMenuButton = true;
+  @Input() showMenuButton = false;
+  @Input() showBackButton = true;
 
   constructor() {
   }

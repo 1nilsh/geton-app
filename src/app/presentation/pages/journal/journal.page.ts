@@ -4,6 +4,8 @@ import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entr
 import { JournalEntry } from '@app/data/models/journal-entry';
 import { JournalService } from '@app/applicationlogic/journal/journal.service';
 import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
+import { UserTrainingService } from '@app/applicationlogic/training/services/user-training.service';
+import { Training } from '@app/data/models/training';
 
 @Component({
   selector: 'app-journal',
@@ -13,14 +15,23 @@ import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/revie
 export class JournalPage implements OnInit {
 
   journalEntries: JournalEntry[] = [];
-  canAddEntry = true;
+  canAddEntry = false;
+  selectedTrainingId = 0;
 
-  constructor(private modalController: ModalController, private journalService: JournalService) {
+  constructor(
+    private modalController: ModalController,
+    private journalService: JournalService,
+    private userTrainingService: UserTrainingService
+  ) {
   }
 
   ngOnInit() {
-    this.journalService.getAllJournalEntriesForTrainingId(1).then(entries => {
-      this.journalEntries = entries;
+    this.userTrainingService.getSelectedTraining().subscribe((training: Training) => {
+      this.selectedTrainingId = training.id;
+      this.journalService.getAllJournalEntriesForTrainingId(training.id).then(entries => {
+        this.journalEntries = entries;
+        this.canAddEntry = true;
+      });
     });
   }
 
@@ -31,9 +42,11 @@ export class JournalPage implements OnInit {
     });
     modal.onDidDismiss().then(event => {
       const newEntry = {
-        training: 24,
+        training: this.selectedTrainingId,
         date: new Date(),
-        score: event.data.wellbeing,
+        scoreWohlfuehlen: event.data.scaleWohlfuehlen,
+        scoreWohlwollen: event.data.scaleWohlwollen,
+        scoreAchtsamkeit: event.data.scaleAchtsamkeit,
         text: event.data.enteredText
       };
       this.journalService.addNewEntry(newEntry);
@@ -51,5 +64,15 @@ export class JournalPage implements OnInit {
       }
     });
     await modal.present();
+  }
+
+  async handleClickDelete(entry: JournalEntry) {
+    const i = this.journalEntries.indexOf(entry);
+    await this.journalService.deleteEntry(entry);
+    this.journalEntries.splice(i, 1);
+  }
+
+  calcAvgScore(entry: JournalEntry): number {
+    return Math.round((entry.scoreWohlfuehlen + entry.scoreWohlwollen + entry.scoreAchtsamkeit) / 3);
   }
 }

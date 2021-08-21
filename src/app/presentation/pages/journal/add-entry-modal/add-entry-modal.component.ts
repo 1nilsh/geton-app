@@ -8,7 +8,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class AddEntryModalComponent implements OnInit {
 
-  wellbeingScale: number;
+  scaleWohlfuehlen: number;
+  scaleWohlwollen: number;
+  scaleAchtsamkeit: number;
+
   enteredText: string;
 
   constructor(private modalController: ModalController) {
@@ -21,18 +24,20 @@ export class AddEntryModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  handleRangeChange(event: any): void {
-    this.wellbeingScale = event.target.value;
-  }
-
   handleTextareaChange(event: any): void {
     this.enteredText = event.target.value;
   }
 
   async handleClickSave(): Promise<void> {
     await this.modalController.dismiss({
-      wellbeing: this.wellbeingScale,
+      scaleWohlfuehlen: this.scaleWohlfuehlen,
+      scaleWohlwollen: this.scaleWohlwollen,
+      scaleAchtsamkeit: this.scaleAchtsamkeit,
       enteredText: this.enteredText
     });
+  }
+
+  hasEnteredScores() {
+    return !!this.scaleWohlfuehlen && !!this.scaleWohlwollen && !!this.scaleAchtsamkeit;
   }
 }
