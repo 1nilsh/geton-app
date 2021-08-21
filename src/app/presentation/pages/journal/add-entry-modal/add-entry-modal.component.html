@@ -4,7 +4,7 @@
   </ion-button>
 </app-titlebar>
 
-<ion-content>
+<ion-content #content>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Wie wohl haben Sie sich heute alles in allem gefühlt?</ion-card-title>
@@ -42,7 +42,8 @@
     <div class="ion-text-center">
       <app-indicator-emoticon [score]="scaleAchtsamkeit" size="small"></app-indicator-emoticon>
       <app-indicator-text [score]="scaleAchtsamkeit" type="achtsamkeit"></app-indicator-text>
-      <ion-range min="1" max="5" step="1" pin snaps color="primary" (ionChange)="scaleAchtsamkeit = $event.target.value">
+      <ion-range min="1" max="5" step="1" pin snaps color="primary"
+                 (ionChange)="scaleAchtsamkeit = $event.target.value">
         <label slot="start">1</label>
         <label slot="end">5</label>
       </ion-range>
@@ -51,7 +52,9 @@
 
   <div class="ion-padding free-input-wrap">
     <form>
-      <ion-label>Freitexteingabe:</ion-label>
+      <ion-label>Hier können Sie Momente für sich festhalten, in denen Sie achtsam mit sich umgegangen sind, in denen
+        Sie gut zu sich waren.
+      </ion-label>
       <ion-textarea
         placeholder="..."
         spellcheck
@@ -67,5 +70,25 @@
   <div class="ion-padding">
     <ion-button *ngIf="hasEnteredScores()" expand="block" (click)="handleClickSave()">Speichern</ion-button>
     <ion-button *ngIf="!hasEnteredScores()" disabled expand="block">Speichern</ion-button>
+  </div>
+
+  <div class="ion-text-center">
+    <ion-button (click)="toggleHelp()" fill="clear">
+      <ion-icon slot="start" name="caret-down" [hidden]="helpIsShown"></ion-icon>
+      <ion-icon slot="start" name="caret-up" [hidden]="!helpIsShown"></ion-icon>
+      Ideengeber, welche Momente<br>gesammelt werden können
+    </ion-button>
+  </div>
+
+  <div #hintText [scrollTop]="hintText.scrollHeight" *ngIf="helpIsShown" class="ion-padding">
+    Dies können z.B. Augenblicke sein, in denen…<br><br>
+    …Sie gelassen blieben, obwohl etwas nicht so gelaufen ist, wie erwünscht.<br><br>
+    …Sie sich im Alltag Ihre eigenen persönlichen Werte und Bedürfnisse bewusst machten, anstatt einzig auf die
+    Erwartungen von außen zu achten und zu „funktionieren“.<br><br>
+    …Sie sich kleinere, umsetzbare Ziele setzten, statt die Ansprüche an sich selbst sehr hoch zu stecken.<br><br>
+    …Sie sich auch Ihre Stärken vor Augen führten, anstatt über Ihre Schwächen zu grübeln.<br><br>
+    …Sie etwas Neues ausprobiert haben, statt sich der Angst hinzugeben, dass es Ihnen nicht so gut gelingen könnte.<br>
+    Oder aber ganz allgemein all jene Alltagsmomente, in denen Sie das Gefühl hatten, sich etwas Gutes zu tun und sich
+    Zeit für sich zu nehmen.<br>
   </div>
 </ion-content>

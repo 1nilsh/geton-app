@@ -41,16 +41,18 @@ export class JournalPage implements OnInit {
       cssClass: 'addEntryModal'
     });
     modal.onDidDismiss().then(event => {
-      const newEntry = {
-        training: this.selectedTrainingId,
-        date: new Date(),
-        scoreWohlfuehlen: event.data.scaleWohlfuehlen,
-        scoreWohlwollen: event.data.scaleWohlwollen,
-        scoreAchtsamkeit: event.data.scaleAchtsamkeit,
-        text: event.data.enteredText
-      };
-      this.journalService.addNewEntry(newEntry);
-      this.journalEntries.unshift(newEntry);
+      if (event.data) {
+        const newEntry = {
+          training: this.selectedTrainingId,
+          date: new Date(),
+          scoreWohlfuehlen: event.data.scaleWohlfuehlen,
+          scoreWohlwollen: event.data.scaleWohlwollen,
+          scoreAchtsamkeit: event.data.scaleAchtsamkeit,
+          text: event.data.enteredText
+        };
+        this.journalService.addNewEntry(newEntry);
+        this.journalEntries.unshift(newEntry);
+      }
     });
     await modal.present();
   }

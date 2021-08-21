@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -13,6 +13,9 @@ export class AddEntryModalComponent implements OnInit {
   scaleAchtsamkeit: number;
 
   enteredText: string;
+  helpIsShown = false;
+
+  @ViewChild('content') pageContentElem: any;
 
   constructor(private modalController: ModalController) {
   }
@@ -39,5 +42,10 @@ export class AddEntryModalComponent implements OnInit {
 
   hasEnteredScores() {
     return !!this.scaleWohlfuehlen && !!this.scaleWohlwollen && !!this.scaleAchtsamkeit;
+  }
+
+  toggleHelp() {
+    this.helpIsShown = !this.helpIsShown;
+    this.pageContentElem.scrollToBottom(300);
   }
 }
