@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entry-modal/add-entry-modal.component';
+import { AddEntryModalComponent } from '@app/presentation/pages/journals/self-compassion-journal/add-entry-modal/add-entry-modal.component';
 import { JournalEntry } from '@app/data/models/journal-entry';
 import { JournalService } from '@app/applicationlogic/journal/journal.service';
-import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
+import { ReviewEntryModalComponent } from '@app/presentation/pages/journals/self-compassion-journal/review-entry-modal/review-entry-modal.component';
 import { UserTrainingService } from '@app/applicationlogic/training/services/user-training.service';
 import { Training } from '@app/data/models/training';
 
@@ -29,7 +29,7 @@ export class JournalPage implements OnInit {
     this.userTrainingService.getSelectedTraining().subscribe((training: Training) => {
       this.selectedTrainingId = training.id;
       this.journalService.getAllJournalEntriesForTrainingId(training.id).then(entries => {
-        this.journalEntries = entries;
+        this.journalEntries = entries.filter(entry => entry.training === this.selectedTrainingId);
         this.canAddEntry = true;
       });
     });

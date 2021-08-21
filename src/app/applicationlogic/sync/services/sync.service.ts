@@ -33,6 +33,10 @@ export class SyncService {
     }
 
     for (let i = 0; i < allTrainings.length; i++) {
+      if (!allTrainings[i].enabledFeatures.journal) {
+        // TODO: Add this on server side
+        allTrainings[i].enabledFeatures.journal = {name: 'selfcompassion'};
+      }
       if (allTrainings[i].enabledFeatures.audio) {
         try {
           allTrainings[i] = await this.addAudioDataToTraining(allTrainings[i]);

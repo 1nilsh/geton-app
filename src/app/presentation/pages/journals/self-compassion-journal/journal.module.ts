@@ -8,12 +8,12 @@ import { JournalPageRoutingModule } from './journal-routing.module';
 
 import { JournalPage } from './journal.page';
 import { TitlebarModule } from '@app/presentation/universal-components/titlebar/titlebar.module';
-import { AddEntryModalComponent } from '@app/presentation/pages/journal/add-entry-modal/add-entry-modal.component';
-import { IndicatorEmoticonComponent } from '@app/presentation/pages/journal/indicator-emoticon/indicator-emoticon.component';
-import { ChartComponent } from '@app/presentation/pages/journal/chart/chart.component';
-import { ReviewEntryModalComponent } from '@app/presentation/pages/journal/review-entry-modal/review-entry-modal.component';
+import { AddEntryModalComponent } from '@app/presentation/pages/journals/self-compassion-journal/add-entry-modal/add-entry-modal.component';
+import { IndicatorEmoticonComponent } from '@app/presentation/pages/journals/self-compassion-journal/indicator-emoticon/indicator-emoticon.component';
+import { ChartComponent } from '@app/presentation/pages/journals/self-compassion-journal/chart/chart.component';
+import { ReviewEntryModalComponent } from '@app/presentation/pages/journals/self-compassion-journal/review-entry-modal/review-entry-modal.component';
 import { TextformattingModule } from '@app/infrastructure/textformatting/textformatting.module';
-import { IndicatorTextComponent } from '@app/presentation/pages/journal/indicator-text/indicator-text.component';
+import { IndicatorTextComponent } from '@app/presentation/pages/journals/self-compassion-journal/indicator-text/indicator-text.component';
 
 @NgModule({
   imports: [
